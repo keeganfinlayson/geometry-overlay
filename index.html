@@ -1,0 +1,180 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Overlay · Workbench</title><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#193447;background:#f3f6f9}*{box-sizing:border-box}body{margin:0}.shell{max-width:1240px;margin:auto;padding:18px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}h1{font-size:23px;margin:0}header p{margin:3px 0 0;color:#627789;font-size:13px}.app{display:grid;grid-template-columns:190px minmax(0,1fr);gap:12px}.tools,.workspace{background:white;border:1px solid #dce5ed;border-radius:15px;box-shadow:0 8px 28px #1934470a}.tools{padding:12px;display:flex;flex-direction:column;gap:8px}.tools h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#75899a;margin:6px 4px 4px}.tool{display:flex;gap:10px;align-items:center;width:100%;border:1px solid transparent;border-radius:10px;background:transparent;padding:11px 9px;text-align:left;color:#29465a;font:600 14px system-ui;cursor:pointer}.tool svg{width:33px;height:30px;flex:none}.tool.active{background:#eaf4f9;border-color:#b6d7e8;color:#135b7a}.tool:hover{background:#f0f5f8}.spacer{flex:1}.small{font:12px/1.45 system-ui;color:#738797;padding:8px}.topbar,.bottom{padding:12px 16px;display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}.topbar{border-bottom:1px solid #e6edf2}.bottom{border-top:1px solid #e6edf2}.buttons{display:flex;gap:8px;flex-wrap:wrap}button{font:600 13px system-ui;padding:9px 12px;border-radius:9px;border:1px solid #cbd9e2;background:#fff;color:#28465a;cursor:pointer}button:hover{background:#f1f7fa}button.primary{background:#21465e;color:white;border-color:#21465e}.scene-name{font-weight:650;font-size:14px}#board{width:100%;height:auto;display:block;aspect-ratio:1000/620;touch-action:none;user-select:none;background:#fff}.diagram{stroke:#667e8f;stroke-width:2.8;fill:none;stroke-linecap:round}.aux{stroke:#a2b3c0;stroke-width:2;fill:none;stroke-linecap:round}.scene-point{fill:white;stroke:#667e8f;stroke-width:1.8}.scene-label{fill:#536d80;font:700 23px Georgia,serif;pointer-events:none}.stencil{stroke:#7455bf;stroke-width:4;stroke-dasharray:11 7;fill:none;stroke-linecap:round;pointer-events:none}.stencil.alt{stroke:#078e9f}.hit{stroke:transparent;stroke-width:34;cursor:grab;fill:none}.handle{fill:#fff;stroke:#7455bf;stroke-width:3;cursor:grab}.handle.alt{stroke:#078e9f}.rotator{fill:#7455bf;stroke:white;stroke-width:3;cursor:crosshair}.arc-blue{stroke:#0785b0;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.arc-orange{stroke:#e47718;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.arc-purple{stroke:#8a55c9;stroke-width:5;fill:none;stroke-linecap:round;pointer-events:none}.arc-green{stroke:#168a45;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.identified-line{stroke:#0794bc;stroke-width:7;stroke-linecap:round;opacity:.7;pointer-events:none}.identified-ray{stroke:#e4773d;stroke-width:7;stroke-linecap:round;opacity:.75;pointer-events:none}.gold{stroke:#d5a02d;stroke-width:5;pointer-events:none;stroke-linecap:round}.guide{fill:#fff;stroke:#d7e5ed;stroke-width:1.2}.tag{font:650 14px system-ui;fill:#7455bf;pointer-events:none}.status{font-size:13px;color:#61798a;max-width:650px}.chip{font-size:12px;color:#577286;background:#eff5f8;border-radius:6px;padding:5px 8px}#overlay{pointer-events:none}#controls{pointer-events:all}#stencilLayer{pointer-events:all}@media(max-width:720px){.shell{padding:7px}.app{grid-template-columns:1fr}.tools{flex-direction:row;flex-wrap:wrap;padding:7px}.tools h2,.tools .small,.tools .spacer{display:none}.tool{width:auto;flex:1;justify-content:center;padding:7px 4px;font-size:11px;gap:3px;flex-direction:column}.tool svg{height:22px}header{padding:8px}h1{font-size:19px}.topbar,.bottom{padding:9px}}
+</style></head><body><main class="shell"><header><div><h1>Geometry Overlay</h1><p>Find familiar relationships inside a geometric figure.</p></div><span class="chip">Geometry workbench · mathematical engine</span></header><div class="app"><aside class="tools"><h2>Templates</h2><button class="tool active" data-tool="vertical"><svg viewBox="0 0 40 34"><path d="M4 4L36 30M4 30L36 4" stroke="#7455bf" stroke-width="2.5"/><path d="M13 11Q20 16 27 11M13 23Q20 18 27 23" stroke="#0785b0" fill="none" stroke-width="2.5"/></svg>Vertical angles</button><button class="tool" data-tool="linear"><svg viewBox="0 0 40 34"><path d="M2 24H38M20 24L29 3" stroke="#7455bf" stroke-width="2.5" fill="none"/><path d="M12 24Q14 14 23 17" stroke="#0785b0" stroke-width="2.5" fill="none"/><path d="M23 17Q30 18 30 24" stroke="#e4773d" stroke-width="2.5" fill="none"/></svg>Linear pair</button><button class="tool" data-tool="parallel"><svg viewBox="0 0 40 34"><path d="M4 9L36 3M4 30L36 24" stroke="#7455bf" stroke-width="2.5" stroke-dasharray="5 3"/></svg>Parallel lines</button><button class="tool" data-tool="triangle"><svg viewBox="0 0 40 34"><path d="M4 29L18 3L36 29Z" stroke="#7455bf" stroke-width="2.5" fill="none"/><path d="M10 26L13 20M18 10L22 16M28 26L32 26" stroke-width="3" stroke="#0785b0"/></svg>Triangle</button><div class="spacer"></div><div class="small">Drag a line to rotate it, its center to move it, or triangle vertices to reshape. Snapping occurs on release.</div></aside><section class="workspace"><div class="topbar"><span class="scene-name" id="sceneName">Triangle with a parallel segment</span><div class="buttons"><button id="newScene">New variation ↻</button><button id="family">Next family</button><button id="exportJson">Export JSON</button><button id="importJson">Import JSON</button><button id="exportSvg">Export SVG</button><input id="jsonFile" type="file" accept=".json,application/json" hidden><button id="reset">Reset tool</button><button id="toggle" class="primary">Hide template</button></div></div><svg id="board" viewBox="0 0 1000 620" aria-label="Interactive geometric diagram"><g id="diagram"></g><g id="overlay"></g><g id="stencilLayer"></g></svg><div class="bottom"><span class="status" id="status">Drag a line to rotate; drag the center to move. Snap on release. Diagrams are constraint-based.</span><span class="chip" id="snapInfo">Opposite-side color matching · snap on release</span></div></section></div></main><script>
+'use strict';
+const NS='http://www.w3.org/2000/svg',svg=document.querySelector('#board'),diagram=document.querySelector('#diagram'),overlay=document.querySelector('#overlay'),layer=document.querySelector('#stencilLayer');const $=s=>document.querySelector(s);const make=(tag,attrs={},parent)=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(parent)parent.append(e);return e};const rad=d=>d*Math.PI/180,deg=r=>r*180/Math.PI,dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));const pt=(x,y)=>({x,y}),plus=(a,b)=>pt(a.x+b.x,a.y+b.y),minus=(a,b)=>pt(a.x-b.x,a.y-b.y),mul=(a,t)=>pt(a.x*t,a.y*t),unit=a=>mul(a,1/(Math.hypot(a.x,a.y)||1)),direction=a=>pt(Math.cos(a),Math.sin(a)),angle=(a,b)=>Math.atan2(b.y-a.y,b.x-a.x);let sceneIndex=0,scene,tool='vertical',drag=null,visible=true;
+// Algebraic-geometric definitions: points and constrained geometric primitives.
+// A line is infinite, a ray is one-sided, and a segment is bounded.
+const families=[
+ {name:'Intersecting lines',points:{O:[500,300],A:[250,205],B:[750,395],C:[345,465],D:[655,135]},objects:[{type:'line',through:['A','B']},{type:'line',through:['C','D']}]},
+ {name:'Parallel lines, transversal and triangle',points:{A:[180,205],B:[820,205],C:[180,435],D:[820,435],E:[340,105],F:[680,545],G:[310,435]},objects:[{type:'line',through:['A','B']},{type:'line',through:['C','D'],parallelTo:0,throughPoint:'C'},{type:'line',through:['E','F']},{type:'segment',through:['G','E']}]},
+ {name:'Interconnected triangles',points:{A:[210,480],B:[790,480],C:[485,115],D:[360,480],E:[635,480],F:[485,285]},objects:[{type:'segment',through:['A','B']},{type:'segment',through:['A','C']},{type:'segment',through:['C','B']},{type:'segment',through:['D','F']},{type:'segment',through:['F','E']},{type:'segment',through:['C','F']}]}
+];
+let familyIndex=0,variation=0,customDefinition=null;
+function transformedDefinition(def,seed){
+ const theta=[0,.11,-.14,.19,-.08][seed%5],sx=[1,.94,1.05,.97][seed%4],sy=[1,1.04,.96][seed%3];
+ const co=Math.cos(theta),si=Math.sin(theta),P={};
+ for(const [id,[x,y]] of Object.entries(def.points)){
+  const dx=(x-500)*sx,dy=(y-310)*sy;
+  P[id]=[500+dx*co-dy*si,310+dx*si+dy*co];
+ }
+ return {...def,points:P};
+}
+function geometricDefinition(){return customDefinition||transformedDefinition(families[familyIndex],variation)}
+function validateDefinition(def){
+ if(!def||typeof def.name!=='string'||!def.points||!Array.isArray(def.objects)||def.objects.length>35)throw Error('Invalid diagram definition');
+ for(const [k,v] of Object.entries(def.points))if(!/^[A-Za-z][A-Za-z0-9_]*$/.test(k)||!Array.isArray(v)||v.length!==2||!v.every(n=>typeof n==='number'&&Number.isFinite(n)))throw Error('Invalid point '+k);
+ for(const o of def.objects){if(!['line','ray','segment'].includes(o.type)||!Array.isArray(o.through)||o.through.length!==2||!o.through.every(id=>id in def.points))throw Error('Invalid geometric object');}
+ return def;
+}
+function intersection(s,t){const a=s.a,b=s.b,c=t.a,d=t.b,u=minus(b,a),v=minus(d,c),w=minus(c,a),den=u.x*v.y-u.y*v.x;if(Math.abs(den)<1e-8)return null;const m=(w.x*v.y-w.y*v.x)/den,n=(w.x*u.y-w.y*u.x)/den;if(m<-.0001||m>1.0001||n<-.0001||n>1.0001)return null;return plus(a,mul(u,m))}
+function addArrow(tip,from){const u=unit(minus(tip,from)),n=pt(-u.y,u.x),back=minus(tip,mul(u,13));make('path',{d:`M ${plus(back,mul(n,6)).x} ${plus(back,mul(n,6)).y} L ${tip.x} ${tip.y} L ${minus(back,mul(n,6)).x} ${minus(back,mul(n,6)).y}`,fill:'none',stroke:'#667e8f','stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'},diagram)}
+function labelAt(name,p,occupied){let offset=pt(11,-15);const tries=[pt(12,-17),pt(-23,-16),pt(12,26),pt(-24,27),pt(20,5),pt(-30,5)];let best=Infinity;for(const t of tries){const q=plus(p,t);let score=0;for(const other of occupied){const d=dist(q,other);if(d<36)score+=(36-d)*3}if(q.x<25||q.x>965||q.y<30||q.y>590)score+=100;if(score<best){best=score;offset=t}}const q=plus(p,offset);make('text',{x:q.x,y:q.y,class:'scene-label'},diagram).textContent=name;occupied.push(q)}
+function setScene(){
+ const def=validateDefinition(geometricDefinition()),P={};for(const [k,v] of Object.entries(def.points))P[k]=pt(...v);
+ const seg=[],drawn=[];
+ for(let i=0;i<def.objects.length;i++){
+  const o=def.objects[i];let a=P[o.through[0]],b=P[o.through[1]];
+  if(o.parallelTo!==undefined){const base=def.objects[o.parallelTo];if(!base||!P[base.through[0]]||!P[base.through[1]])throw Error('Invalid parallel constraint');const d=unit(minus(P[base.through[1]],P[base.through[0]]));a=P[o.throughPoint||o.through[0]];b=plus(a,mul(d,100));}
+  const u=unit(minus(b,a));if(dist(a,b)<1)continue;
+  let start=a,end=b;
+  if(o.type==='line'){start=minus(a,mul(u,2000));end=plus(a,mul(u,2000));}
+  if(o.type==='ray')end=plus(a,mul(u,2000));
+  // visible segment is clipped to the work area; mathematical primitive remains unbounded.
+  const clipped=clipSegment(start,end,45,955,45,575);if(!clipped)continue;
+  seg.push({a:clipped.a,b:clipped.b,type:o.type,ids:o.through,source:o});drawn.push({a:clipped.a,b:clipped.b,type:o.type});
+ }
+ const ints=[];
+ for(let j=0;j<seg.length;j++)for(let k=j+1;k<seg.length;k++){
+  const p=intersection(seg[j],seg[k]);if(!p)continue;
+  const old=ints.find(v=>dist(v,p)<1.5);
+  if(old)old.lines=[...new Set([...old.lines,j,k])];else ints.push({...p,lines:[j,k]});
+ }
+ // Points named in the model remain on their defining objects; intersections are derived.
+ const named=[];for(const [name,p] of Object.entries(P)){
+  const hit=ints.find(q=>dist(q,p)<4);named.push({name,p:hit||p});
+ }
+ const used=new Set(Object.keys(P));const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter(x=>!used.has(x));let next=0;
+ for(const q of ints){if(named.some(n=>dist(n.p,q)<5))continue;named.push({name:letters[next++]||`P${next}`,p:q});}
+ scene={P,seg,ints,def};diagram.replaceChildren();
+ for(const d of drawn){make('line',{x1:d.a.x,y1:d.a.y,x2:d.b.x,y2:d.b.y,class:'diagram'},diagram);
+  if(d.type==='line'||d.type==='ray')addArrow(d.b,d.a);
+  if(d.type==='line')addArrow(d.a,d.b);
+ }
+ const occupied=[];for(const {name,p} of named){if(p.x<35||p.x>965||p.y<35||p.y>585)continue;make('circle',{cx:p.x,cy:p.y,r:4.4,class:'scene-point'},diagram);labelAt(name,p,occupied);}
+ $('#sceneName').textContent=def.name;resetTool();
+}
+function clipSegment(a,b,xmin,xmax,ymin,ymax){
+ let t0=0,t1=1,dx=b.x-a.x,dy=b.y-a.y;
+ for(const [p,q] of [[-dx,a.x-xmin],[dx,xmax-a.x],[-dy,a.y-ymin],[dy,ymax-a.y]]){
+  if(Math.abs(p)<1e-12){if(q<0)return null;continue;}
+  const r=q/p;if(p<0){if(r>t1)return null;t0=Math.max(t0,r)}else{if(r<t0)return null;t1=Math.min(t1,r)}
+ }
+ return {a:plus(a,mul(minus(b,a),t0)),b:plus(a,mul(minus(b,a),t1))};
+}
+const defaults={vertical:()=>({c:pt(365,250),a:-.24,b:1.05}),linear:()=>({c:pt(365,250),a:-.24,b:-1.3}),parallel:()=>({c:pt(320,260),c2:pt(550,400),a:-.24}),triangle:()=>({v:[pt(300,420),pt(550,415),pt(430,205)]})};let model=defaults.vertical();function resetTool(){model=defaults[tool]();visible=true;$('#toggle').textContent='Hide template';draw()}
+function nearPoint(p,r=22){const candidates=[...scene.ints,...Object.values(scene.P)];let best=null;for(const q of candidates){const d=dist(p,q);if(d<r&&(!best||d<best.d))best={p:q,d}}return best?.p||null}
+function nearestDirection(a,p,r=rad(5)){let best=null;for(const s of scene.seg){const v=minus(s.b,s.a),t=angle(s.a,s.b);for(let k=-2;k<=2;k++){const target=t+k*Math.PI;const delta=Math.abs(Math.atan2(Math.sin(a-target),Math.cos(a-target)));const w=minus(p,s.a),len=Math.hypot(v.x,v.y),perp=Math.abs(w.x*v.y-w.y*v.x)/len;if(delta<r&&perp<50&&(!best||delta<best.d))best={a:target,d:delta}}}return best?.a??a}
+function arc(c,start,end,r,cls,parent=layer){while(end<start)end+=2*Math.PI;const sweep=end-start;if(sweep<.03)return;const p=plus(c,mul(direction(start),r)),q=plus(c,mul(direction(end),r));make('path',{d:`M${p.x} ${p.y} A${r} ${r} 0 ${sweep>Math.PI?1:0} 1 ${q.x} ${q.y}`,class:cls},parent)}
+const ANGLE_RADIUS=35; // Constant marker size, independent of angle magnitude.
+const MARKER_GAP=.13; // Angular clearance at each boundary, so arcs never form a circle.
+function sectors(c,a,b){let angles=[a,a+Math.PI,b,b+Math.PI].map(t=>(t%(2*Math.PI)+2*Math.PI)%(2*Math.PI)).sort((x,y)=>x-y);for(let i=0;i<4;i++){const st=angles[i],en=i===3?angles[0]+2*Math.PI:angles[i+1];arc(c,st+MARKER_GAP,en-MARKER_GAP,(en-st)<Math.PI/2?ANGLE_RADIUS-8:ANGLE_RADIUS+8,(en-st)<Math.PI/2?'arc-blue':'arc-orange')}}
+// Draw only wedges bounded by two rays that actually exist in the diagram.
+// An endpoint supplies one ray, not an imaginary continuation of its segment.
+function existingRays(c){
+  const rays=[];
+  for(const s of scene.seg){
+    const v=minus(s.b,s.a),len=Math.hypot(v.x,v.y);
+    if(len<1)continue;
+    const t=((c.x-s.a.x)*v.x+(c.y-s.a.y)*v.y)/(len*len);
+    const foot=plus(s.a,mul(v,t));
+    if(dist(foot,c)>6||t<-.006||t>1.006)continue;
+    if(t>0.006)rays.push(angle(c,s.a));
+    if(t<.994)rays.push(angle(c,s.b));
+  }
+  return rays;
+}
+function angleDifference(a,b){return Math.abs(Math.atan2(Math.sin(a-b),Math.cos(a-b)))}
+function actualSectors(c,a,b){
+  const rays=existingRays(c);
+  const has=(v)=>rays.some(r=>angleDifference(r,v)<rad(8));
+  // Both template axes must follow real segments at this intersection.
+  if(!rays.some(r=>Math.abs(Math.sin(r-a))<Math.sin(rad(8))) ||
+     !rays.some(r=>Math.abs(Math.sin(r-b))<Math.sin(rad(8))))return;
+  const norm=x=>(x%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+  const bounds=[a,a+Math.PI,b,b+Math.PI].map(norm).sort((x,y)=>x-y);
+  for(let i=0;i<4;i++){
+    const st=bounds[i],en=i===3?bounds[0]+2*Math.PI:bounds[i+1],width=en-st;
+    if(!has(st)||!has(en)||width<=2*MARKER_GAP+.02)continue;
+    arc(c,st+MARKER_GAP,en-MARKER_GAP,width<Math.PI/2?ANGLE_RADIUS-8:ANGLE_RADIUS+8,width<Math.PI/2?'arc-blue':'arc-orange');
+  }
+}
+function line(c,a,length=175,cls='stencil',action='rotateA',parent=layer){const u=direction(a),p=minus(c,mul(u,length)),q=plus(c,mul(u,length));make('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:cls},parent);make('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:'hit','data-action':action},parent);return {p,q}}
+function alignment(s,c,a,tolerance=rad(6)){const u=minus(s.b,s.a),len=Math.hypot(u.x,u.y);if(len<1)return false;const perpendicular=Math.abs((c.x-s.a.x)*u.y-(c.y-s.a.y)*u.x)/len;const difference=Math.abs(Math.sin(a-angle(s.a,s.b)));return perpendicular<9&&difference<Math.sin(tolerance)}
+function verticalHighlights(){
+ const c=model.c,hit=scene.ints.find(p=>dist(c,p)<9);if(!hit)return;
+ const matches=[model.a,model.b].map(a=>scene.seg.filter(s=>alignment(s,c,a)));
+ if(matches.some(m=>!m.length))return;
+ matches.forEach((family,i)=>{
+   const seed=family[0],axis=unit(minus(seed.b,seed.a));
+   const group=scene.seg.filter(s=>Math.abs(unit(minus(s.b,s.a)).x*axis.y-unit(minus(s.b,s.a)).y*axis.x)<.025 && Math.abs((s.a.x-c.x)*axis.y-(s.a.y-c.y)*axis.x)<6);
+   const projections=group.flatMap(s=>[s.a,s.b].map(p=>(p.x-c.x)*axis.x+(p.y-c.y)*axis.y));
+   const a=plus(c,mul(axis,Math.min(...projections))),b=plus(c,mul(axis,Math.max(...projections)));
+   make('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:i===0?'identified-line':'identified-ray'},overlay);
+ });
+}
+function linearHighlights(){
+  // Match complete geometric lines at the snapped intersection, not disconnected fragments.
+  const c=model.c,hit=scene.ints.find(p=>dist(c,p)<8);if(!hit)return;
+  const through=scene.seg.filter(s=>alignment(s,c,model.a));
+  const branch=scene.seg.filter(s=>alignment(s,c,model.b)&&!through.includes(s));
+  if(!through.length||!branch.length)return;
+  // Collect collinear pieces and display them as continuous geometry through the vertex.
+  function highlightFamily(seed,cls,rayOnly=false){
+    const axis=unit(minus(seed.b,seed.a));
+    const matching=scene.seg.filter(s=>{
+      const v=unit(minus(s.b,s.a));
+      const cross=Math.abs(v.x*axis.y-v.y*axis.x);
+      const d=Math.abs((s.a.x-c.x)*axis.y-(s.a.y-c.y)*axis.x);
+      return cross<.025&&d<6;
+    });
+    let vals=matching.flatMap(s=>[s.a,s.b].map(p=>(p.x-c.x)*axis.x+(p.y-c.y)*axis.y));
+    if(!vals.length)return;
+    let lo=Math.min(...vals),hi=Math.max(...vals);
+    if(rayOnly){const sign=direction(model.b).x*axis.x+direction(model.b).y*axis.y; if(sign>=0)lo=0;else hi=0;}
+    const p=plus(c,mul(axis,lo)),q=plus(c,mul(axis,hi));
+    make('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:cls},overlay);
+  }
+  highlightFamily(through[0],'identified-line');
+  // The second geometric line continues through the vertex whenever the drawing does.
+  highlightFamily(branch[0],'identified-ray');
+}
+function handle(p,action,cls='handle',r=12){make('circle',{cx:p.x,cy:p.y,r,class:cls,'data-action':action},layer)}
+function draw(){layer.replaceChildren();overlay.replaceChildren();if(!visible)return;
+if(tool==='vertical'){const {c,a,b}=model;verticalHighlights();line(c,a);line(c,b,175,'stencil','rotateB');if(scene.ints.some(p=>dist(p,c)<9))actualSectors(c,a,b);handle(c,'move');handle(plus(c,mul(direction(a),175)),'angleA','rotator');handle(plus(c,mul(direction(b),175)),'angleB','rotator')}
+if(tool==='linear'){const {c,a,b}=model;linearHighlights();line(c,a);const end=plus(c,mul(direction(b),165));make('line',{x1:c.x,y1:c.y,x2:end.x,y2:end.y,class:'stencil'},layer);make('line',{x1:c.x,y1:c.y,x2:end.x,y2:end.y,class:'hit','data-action':'rotateB'},layer);
+// The two supplementary angle markers occupy the half-plane containing the third ray.
+// Calculate sectors using actual ray bearings, rather than absolute sweep angles.
+const norm=x=>(x%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+const ccw=norm(b-a),start=ccw<Math.PI?a:a+Math.PI;
+const first=norm(b-start);const endStraight=start+Math.PI;
+const leftGap=MARKER_GAP;
+arc(c,start+leftGap,start+first-leftGap,ANGLE_RADIUS-8,'arc-blue');
+arc(c,start+first+leftGap,endStraight-leftGap,ANGLE_RADIUS+8,'arc-orange');
+handle(c,'move');handle(plus(c,mul(direction(a),175)),'angleA','rotator');handle(end,'angleB','rotator')}
+
+if(tool==='parallel'){const {c,c2,a}=model;line(c,a,155,'stencil','rotateA');line(c2,a,155,'stencil alt','move2');handle(c,'move');handle(c2,'move2','handle alt');handle(plus(c,mul(direction(a),155)),'angleA','rotator');const i1=nearPoint(c,20),i2=nearPoint(c2,20);if(i1&&i2&&dist(i1,i2)>40){const common=scene.seg.find(s=>{const u=minus(s.b,s.a),len=Math.hypot(u.x,u.y);return Math.abs((i1.x-s.a.x)*u.y-(i1.y-s.a.y)*u.x)/len<4&&Math.abs((i2.x-s.a.x)*u.y-(i2.y-s.a.y)*u.x)/len<4});if(common){make('line',{x1:common.a.x,y1:common.a.y,x2:common.b.x,y2:common.b.y,class:'gold'},overlay);const t=angle(common.a,common.b);actualSectors(c,a,t);actualSectors(c2,a,t)}}}
+if(tool==='triangle'){const [a,b,c]=model.v;make('polygon',{points:model.v.map(p=>`${p.x},${p.y}`).join(' '),fill:'#7455bf','fill-opacity':'.035',stroke:'none'},layer);const sideColors=['#0785b0','#e47718','#168a45'];for(let j=0;j<3;j++){const u=model.v[j],v=model.v[(j+1)%3];make('line',{x1:u.x,y1:u.y,x2:v.x,y2:v.y,stroke:sideColors[(j+2)%3],'stroke-width':6,'stroke-linecap':'round','stroke-dasharray':'11 7','pointer-events':'none'},layer);make('line',{x1:u.x,y1:u.y,x2:v.x,y2:v.y,class:'hit','data-action':'move'},layer)}for(let i=0;i<3;i++){const p=model.v[i],prev=model.v[(i+2)%3],next=model.v[(i+1)%3],start=angle(p,next),end=angle(p,prev);let delta=((end-start)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);let s=start,e=end;if(delta>Math.PI){s=end;e=start;delta=2*Math.PI-delta}arc(p,s+.07,s+delta-.07,ANGLE_RADIUS,['arc-blue','arc-orange','arc-green'][i]);handle(p,'vertex'+i)}const centroid=mul(model.v.reduce((acc,p)=>plus(acc,p),pt(0,0)),1/3);handle(centroid,'move','handle',10)}
+}
+function svgPoint(e){const m=svg.getScreenCTM();if(!m)return null;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse());return pt(p.x,p.y)}
+svg.addEventListener('pointerdown',e=>{const action=e.target.getAttribute('data-action');if(!action||!visible)return;const p=svgPoint(e);if(!p)return;e.preventDefault();let base=tool==='triangle'?(action.startsWith('vertex')?model.v[+action.slice(-1)]:mul(model.v.reduce((s,v)=>plus(s,v),pt(0,0)),1/3)):action==='move2'?model.c2:model.c;drag={id:e.pointerId,action,start:p,offset:minus(p,base),original:JSON.parse(JSON.stringify(model)),startAngle:tool==='triangle'?0:angle(model.c,p)};svg.setPointerCapture(e.pointerId)});
+svg.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;const p=svgPoint(e);if(!p)return;e.preventDefault();const action=drag.action;if(tool==='triangle'){if(action.startsWith('vertex'))model.v[+action.slice(-1)]=pt(clamp(p.x-drag.offset.x,40,960),clamp(p.y-drag.offset.y,40,580));else{const delta=minus(p,drag.start);model.v=drag.original.v.map(v=>pt(clamp(v.x+delta.x,40,960),clamp(v.y+delta.y,40,580)))}}else if(action==='move'||action==='move2'){const key=action==='move2'?'c2':'c';model[key]=pt(clamp(p.x-drag.offset.x,30,970),clamp(p.y-drag.offset.y,30,590))}else{const a=angle(model.c,p);const delta=Math.atan2(Math.sin(a-drag.startAngle),Math.cos(a-drag.startAngle));if(action==='angleA'||action==='rotateA')model.a=drag.original.a+delta;else model.b=drag.original.b+delta}draw()});
+function finish(e){if(!drag||drag.id!==e.pointerId)return;const a=drag.action;if(tool==='triangle'){if(a.startsWith('vertex')){const i=+a.slice(-1),q=nearPoint(model.v[i],21);if(q)model.v[i]={...q}}}else if(a==='move'||a==='move2'){const key=a==='move2'?'c2':'c',q=nearPoint(model[key],20);if(q)model[key]={...q}}else if(a==='angleA'||a==='rotateA'){model.a=nearestDirection(model.a,model.c)}else if(a==='angleB'||a==='rotateB'){model.b=nearestDirection(model.b,model.c)}drag=null;draw()}
+svg.addEventListener('pointerup',finish);svg.addEventListener('pointercancel',e=>{if(drag&&e.pointerId===drag.id){drag=null;draw()}});svg.addEventListener('lostpointercapture',e=>{if(drag&&e.pointerId===drag.id){drag=null;draw()}});
+const descriptions={vertical:'Drag the center to move; drag either dashed line to rotate. Opposite sectors share a color.',linear:'Align the vertex and both rays to identify a linear pair. Both identified lines highlight continuously through their intersection; the angle arcs stay on the side containing the third ray.',parallel:'Drag the first line to rotate it; drag its center to move it. Slide the second without changing its direction.',triangle:'Drag a side to move the triangle; drag its vertices to reshape it. Each angle matches its opposite side: blue, orange, and green.'};for(const btn of document.querySelectorAll('[data-tool]'))btn.onclick=()=>{tool=btn.dataset.tool;document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b===btn));$('#status').textContent=descriptions[tool];resetTool()};$('#newScene').onclick=()=>{customDefinition=null;variation++;setScene()};$('#family').onclick=()=>{customDefinition=null;familyIndex=(familyIndex+1)%families.length;variation=0;setScene()};$('#reset').onclick=resetTool;$('#toggle').onclick=()=>{visible=!visible;$('#toggle').textContent=visible?'Hide template':'Reveal template';draw()};$('#exportJson').onclick=()=>downloadFile('geometry-diagram.json',JSON.stringify(scene.def,null,2),'application/json');
+$('#importJson').onclick=()=>$('#jsonFile').click();
+$('#jsonFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=validateDefinition(JSON.parse(await f.text()));customDefinition=d;setScene()}catch(err){alert('Could not import diagram: '+err.message)}e.target.value=''};
+$('#exportSvg').onclick=()=>{const copy=svg.cloneNode(true);copy.querySelector('#overlay')?.remove();copy.querySelector('#stencilLayer')?.remove();copy.setAttribute('xmlns',NS);const style=document.createElementNS(NS,'style');style.textContent='.diagram{stroke:#667e8f;stroke-width:2.8;fill:none;stroke-linecap:round}.scene-point{fill:white;stroke:#667e8f;stroke-width:1.8}.scene-label{fill:#536d80;font:bold 23px Georgia,serif}';copy.prepend(style);downloadFile('geometry-diagram.svg',new XMLSerializer().serializeToString(copy),'image/svg+xml')};
+function downloadFile(name,data,type){const url=URL.createObjectURL(new Blob([data],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+setScene();
+</script></body></html>
