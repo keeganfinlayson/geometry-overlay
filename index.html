@@ -29,7 +29,27 @@ function validateDefinition(def){
 }
 function intersection(s,t){const a=s.a,b=s.b,c=t.a,d=t.b,u=minus(b,a),v=minus(d,c),w=minus(c,a),den=u.x*v.y-u.y*v.x;if(Math.abs(den)<1e-8)return null;const m=(w.x*v.y-w.y*v.x)/den,n=(w.x*u.y-w.y*u.x)/den;if(m<-.0001||m>1.0001||n<-.0001||n>1.0001)return null;return plus(a,mul(u,m))}
 function addArrow(tip,from){const u=unit(minus(tip,from)),n=pt(-u.y,u.x),back=minus(tip,mul(u,13));make('path',{d:`M ${plus(back,mul(n,6)).x} ${plus(back,mul(n,6)).y} L ${tip.x} ${tip.y} L ${minus(back,mul(n,6)).x} ${minus(back,mul(n,6)).y}`,fill:'none',stroke:'#667e8f','stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'},diagram)}
-function labelAt(name,p,occupied){let offset=pt(11,-15);const tries=[pt(12,-17),pt(-23,-16),pt(12,26),pt(-24,27),pt(20,5),pt(-30,5)];let best=Infinity;for(const t of tries){const q=plus(p,t);let score=0;for(const other of occupied){const d=dist(q,other);if(d<36)score+=(36-d)*3}if(q.x<25||q.x>965||q.y<30||q.y>590)score+=100;if(score<best){best=score;offset=t}}const q=plus(p,offset);make('text',{x:q.x,y:q.y,class:'scene-label'},diagram).textContent=name;occupied.push(q)}
+function labelAt(name,p,occupied){
+ const tries=[pt(17,-19),pt(-30,-19),pt(17,31),pt(-30,31),pt(28,0),pt(-38,0),pt(5,-32),pt(5,42)];
+ let best=Infinity,offset=tries[0];
+ for(const t of tries){
+  const q=plus(p,t);let score=0;
+  for(const other of occupied){const d=dist(q,other);if(d<43)score+=(43-d)*4}
+  if(q.x<28||q.x>965||q.y<30||q.y>585)score+=200;
+  // Keep letter glyphs off every plotted geometric line, not merely away from points.
+  const center=pt(q.x+7,q.y-8);
+  for(const seg of scene.seg){
+   const v=minus(seg.b,seg.a),w=minus(center,seg.a),l2=v.x*v.x+v.y*v.y;
+   const t0=clamp((w.x*v.x+w.y*v.y)/l2,0,1);
+   const d=dist(center,plus(seg.a,mul(v,t0)));
+   if(d<19)score+=(19-d)*12;
+  }
+  if(score<best){best=score;offset=t}
+ }
+ const q=plus(p,offset);
+ make('text',{x:q.x,y:q.y,class:'scene-label'},diagram).textContent=name;
+ occupied.push(pt(q.x+7,q.y-8));
+}
 function setScene(){
  const def=validateDefinition(geometricDefinition()),P={};for(const [k,v] of Object.entries(def.points))P[k]=pt(...v);
  const seg=[],drawn=[];
@@ -54,7 +74,7 @@ function setScene(){
  const named=[];for(const [name,p] of Object.entries(P)){
   const hit=ints.find(q=>dist(q,p)<4);named.push({name,p:hit||p});
  }
- const used=new Set(Object.keys(P));const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter(x=>!used.has(x));let next=0;
+ const used=new Set(Object.keys(P));const letters='ABCDEFGHIJKLMNPQRSTUVWXYZ'.split('').filter(x=>!used.has(x));let next=0;
  for(const q of ints){if(named.some(n=>dist(n.p,q)<5))continue;named.push({name:letters[next++]||`P${next}`,p:q});}
  scene={P,seg,ints,def};diagram.replaceChildren();
  for(const d of drawn){make('line',{x1:d.a.x,y1:d.a.y,x2:d.b.x,y2:d.b.y,class:'diagram'},diagram);
@@ -95,19 +115,41 @@ function existingRays(c){
   return rays;
 }
 function angleDifference(a,b){return Math.abs(Math.atan2(Math.sin(a-b),Math.cos(a-b)))}
+// Congruence notation: one or two small radial ticks across the arc,
+// plus an unobstructed angle label. Equal angles use equal colors and tick counts.
+function congruentMarker(c,start,end,r,group,parent=layer){
+ while(end<start)end+=2*Math.PI;
+ const sweep=end-start;if(sweep<.16||sweep>Math.PI+.05)return;
+ const color=group===1?'#087fac':'#df751a';
+ const trim=Math.min(.095,sweep*.17),st=start+trim,en=end-trim;
+ const from=plus(c,mul(direction(st),r)),to=plus(c,mul(direction(en),r));
+ make('path',{d:`M${from.x} ${from.y} A${r} ${r} 0 ${en-st>Math.PI?1:0} 1 ${to.x} ${to.y}`,fill:'none',stroke:color,'stroke-width':5,'stroke-linecap':'round'},parent);
+ const mid=(st+en)/2;
+ for(let j=0;j<group;j++){
+  const t=mid+(j-(group-1)/2)*.12;
+  const a=plus(c,mul(direction(t),r-7)),b=plus(c,mul(direction(t),r+7));
+  make('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:color,'stroke-width':3,'stroke-linecap':'round'},parent);
+ }
+ const pos=plus(c,mul(direction(mid),r+31));
+ // White-backed labels remain readable over both the stencil and diagram.
+ const label=group===1?'1':'2';
+ make('circle',{cx:pos.x,cy:pos.y,r:12,fill:'white','fill-opacity':'.94',stroke:color,'stroke-width':1.4},parent);
+ make('text',{x:pos.x,y:pos.y+5,'text-anchor':'middle',fill:color,'font-size':15,'font-family':'system-ui','font-weight':800,'pointer-events':'none'},parent).textContent=label;
+}
 function actualSectors(c,a,b){
-  const rays=existingRays(c);
-  const has=(v)=>rays.some(r=>angleDifference(r,v)<rad(8));
-  // Both template axes must follow real segments at this intersection.
-  if(!rays.some(r=>Math.abs(Math.sin(r-a))<Math.sin(rad(8))) ||
-     !rays.some(r=>Math.abs(Math.sin(r-b))<Math.sin(rad(8))))return;
-  const norm=x=>(x%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
-  const bounds=[a,a+Math.PI,b,b+Math.PI].map(norm).sort((x,y)=>x-y);
-  for(let i=0;i<4;i++){
-    const st=bounds[i],en=i===3?bounds[0]+2*Math.PI:bounds[i+1],width=en-st;
-    if(!has(st)||!has(en)||width<=2*MARKER_GAP+.02)continue;
-    arc(c,st+MARKER_GAP,en-MARKER_GAP,width<Math.PI/2?ANGLE_RADIUS-8:ANGLE_RADIUS+8,width<Math.PI/2?'arc-blue':'arc-orange');
-  }
+ const rays=existingRays(c);
+ const has=v=>rays.some(r=>angleDifference(r,v)<rad(8));
+ if(!rays.some(r=>Math.abs(Math.sin(r-a))<Math.sin(rad(8)))||
+    !rays.some(r=>Math.abs(Math.sin(r-b))<Math.sin(rad(8))))return;
+ const norm=x=>(x%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+ const bounds=[a,a+Math.PI,b,b+Math.PI].map(norm).sort((x,y)=>x-y);
+ const wedges=[];
+ for(let i=0;i<4;i++){
+  const st=bounds[i],en=i===3?bounds[0]+2*Math.PI:bounds[i+1],width=en-st;
+  if(has(st)&&has(en)&&width>.22)wedges.push({st,en,width,i});
+ }
+ // Opposite sectors form a congruence class; distinguish the two classes.
+ for(const w of wedges)congruentMarker(c,w.st,w.en,w.width<Math.PI/2?34:44,w.i%2===0?1:2);
 }
 function line(c,a,length=175,cls='stencil',action='rotateA',parent=layer){const u=direction(a),p=minus(c,mul(u,length)),q=plus(c,mul(u,length));make('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:cls},parent);make('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:'hit','data-action':action},parent);return {p,q}}
 function alignment(s,c,a,tolerance=rad(6)){const u=minus(s.b,s.a),len=Math.hypot(u.x,u.y);if(len<1)return false;const perpendicular=Math.abs((c.x-s.a.x)*u.y-(c.y-s.a.y)*u.x)/len;const difference=Math.abs(Math.sin(a-angle(s.a,s.b)));return perpendicular<9&&difference<Math.sin(tolerance)}
@@ -159,8 +201,8 @@ const norm=x=>(x%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
 const ccw=norm(b-a),start=ccw<Math.PI?a:a+Math.PI;
 const first=norm(b-start);const endStraight=start+Math.PI;
 const leftGap=MARKER_GAP;
-arc(c,start+leftGap,start+first-leftGap,ANGLE_RADIUS-8,'arc-blue');
-arc(c,start+first+leftGap,endStraight-leftGap,ANGLE_RADIUS+8,'arc-orange');
+congruentMarker(c,start+leftGap,start+first-leftGap,ANGLE_RADIUS-8,1);
+congruentMarker(c,start+first+leftGap,endStraight-leftGap,ANGLE_RADIUS+8,2);
 handle(c,'move');handle(plus(c,mul(direction(a),175)),'angleA','rotator');handle(end,'angleB','rotator')}
 
 if(tool==='parallel'){const {c,c2,a}=model;line(c,a,155,'stencil','rotateA');line(c2,a,155,'stencil alt','move2');handle(c,'move');handle(c2,'move2','handle alt');handle(plus(c,mul(direction(a),155)),'angleA','rotator');const i1=nearPoint(c,20),i2=nearPoint(c2,20);if(i1&&i2&&dist(i1,i2)>40){const common=scene.seg.find(s=>{const u=minus(s.b,s.a),len=Math.hypot(u.x,u.y);return Math.abs((i1.x-s.a.x)*u.y-(i1.y-s.a.y)*u.x)/len<4&&Math.abs((i2.x-s.a.x)*u.y-(i2.y-s.a.y)*u.x)/len<4});if(common){make('line',{x1:common.a.x,y1:common.a.y,x2:common.b.x,y2:common.b.y,class:'gold'},overlay);const t=angle(common.a,common.b);actualSectors(c,a,t);actualSectors(c2,a,t)}}}
