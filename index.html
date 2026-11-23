@@ -1,5 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Overlay v2.7 · Workbench</title><style>
-:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#193447;background:#f3f6f9}*{box-sizing:border-box}body{margin:0}.shell{max-width:1240px;margin:auto;padding:18px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}h1{font-size:23px;margin:0}header p{margin:3px 0 0;color:#627789;font-size:13px}.app{display:grid;grid-template-columns:190px minmax(0,1fr);gap:12px}.tools,.workspace{background:white;border:1px solid #dce5ed;border-radius:15px;box-shadow:0 8px 28px #1934470a}.tools{padding:12px;display:flex;flex-direction:column;gap:8px}.tools h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#75899a;margin:6px 4px 4px}.tool{display:flex;gap:10px;align-items:center;width:100%;border:1px solid transparent;border-radius:10px;background:transparent;padding:11px 9px;text-align:left;color:#29465a;font:600 14px system-ui;cursor:pointer}.tool svg{width:33px;height:30px;flex:none}.tool.active{background:#eaf4f9;border-color:#b6d7e8;color:#135b7a}.tool:hover{background:#f0f5f8}.spacer{flex:1}.small{font:12px/1.45 system-ui;color:#738797;padding:8px}.topbar,.bottom{padding:12px 16px;display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}.topbar{border-bottom:1px solid #e6edf2}.bottom{border-top:1px solid #e6edf2}.buttons{display:flex;gap:8px;flex-wrap:wrap}button{font:600 13px system-ui;padding:9px 12px;border-radius:9px;border:1px solid #cbd9e2;background:#fff;color:#28465a;cursor:pointer}button:hover{background:#f1f7fa}button.primary{background:#21465e;color:white;border-color:#21465e}.scene-name{font-weight:650;font-size:14px}#board{width:100%;height:auto;display:block;aspect-ratio:1000/620;touch-action:none;user-select:none;background:#fff}.diagram{stroke:#526b7b;stroke-width:3.3;fill:none;stroke-linecap:round}.aux{stroke:#a2b3c0;stroke-width:2;fill:none;stroke-linecap:round}.scene-point{fill:white;stroke:#526b7b;stroke-width:1.8}.scene-label{fill:#536d80;font:700 23px Georgia,serif;pointer-events:none}.stencil{stroke:#7455bf;stroke-width:3.2;opacity:.75;fill:none;stroke-linecap:round;pointer-events:none}.stencil.alt{stroke:#078e9f}.hit{stroke:transparent;stroke-width:34;cursor:grab;fill:none}.handle{fill:#fff;stroke:#7455bf;stroke-width:3;cursor:grab}.handle.alt{stroke:#078e9f}.rotator{fill:white;stroke:#7455bf;stroke-width:2.8;cursor:grab}.arc-blue{stroke:#0785b0;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.arc-orange{stroke:#e47718;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.arc-purple{stroke:#8a55c9;stroke-width:5;fill:none;stroke-linecap:round;pointer-events:none}.arc-green{stroke:#168a45;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.identified-line{stroke:#0794bc;stroke-width:7;stroke-linecap:round;opacity:.7;pointer-events:none}.identified-ray{stroke:#e4773d;stroke-width:7;stroke-linecap:round;opacity:.75;pointer-events:none}.gold{stroke:#d5a02d;stroke-width:5;pointer-events:none;stroke-linecap:round}.guide{fill:#fff;stroke:#d7e5ed;stroke-width:1.2}.tag{font:650 14px system-ui;fill:#7455bf;pointer-events:none}.status{font-size:13px;color:#61798a;max-width:650px}.chip{font-size:12px;color:#577286;background:#eff5f8;border-radius:6px;padding:5px 8px}#overlay{pointer-events:none}#controls{pointer-events:all}#stencilLayer{pointer-events:all}@media(max-width:720px){.shell{padding:7px}.app{grid-template-columns:1fr}.tools{flex-direction:row;flex-wrap:wrap;padding:7px}.tools h2,.tools .small,.tools .spacer{display:none}.tool{width:auto;flex:1;justify-content:center;padding:7px 4px;font-size:11px;gap:3px;flex-direction:column}.tool svg{height:22px}header{padding:8px}h1{font-size:19px}.topbar,.bottom{padding:9px}}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Overlay v2.6 · Workbench</title><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#193447;background:#f3f6f9}*{box-sizing:border-box}body{margin:0}.shell{max-width:1240px;margin:auto;padding:18px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}h1{font-size:23px;margin:0}header p{margin:3px 0 0;color:#627789;font-size:13px}.app{display:grid;grid-template-columns:190px minmax(0,1fr);gap:12px}.tools,.workspace{background:white;border:1px solid #dce5ed;border-radius:15px;box-shadow:0 8px 28px #1934470a}.tools{padding:12px;display:flex;flex-direction:column;gap:8px}.tools h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#75899a;margin:6px 4px 4px}.tool{display:flex;gap:10px;align-items:center;width:100%;border:1px solid transparent;border-radius:10px;background:transparent;padding:11px 9px;text-align:left;color:#29465a;font:600 14px system-ui;cursor:pointer}.tool svg{width:33px;height:30px;flex:none}.tool.active{background:#eaf4f9;border-color:#b6d7e8;color:#135b7a}.tool:hover{background:#f0f5f8}.spacer{flex:1}.small{font:12px/1.45 system-ui;color:#738797;padding:8px}.topbar,.bottom{padding:12px 16px;display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}.topbar{border-bottom:1px solid #e6edf2}.bottom{border-top:1px solid #e6edf2}.buttons{display:flex;gap:8px;flex-wrap:wrap}button{font:600 13px system-ui;padding:9px 12px;border-radius:9px;border:1px solid #cbd9e2;background:#fff;color:#28465a;cursor:pointer}button:hover{background:#f1f7fa}button.primary{background:#21465e;color:white;border-color:#21465e}.scene-name{font-weight:650;font-size:14px}#board{width:100%;height:auto;display:block;aspect-ratio:1000/620;touch-action:none;user-select:none;background:#fff}.diagram{stroke:#667e8f;stroke-width:2.8;fill:none;stroke-linecap:round}.aux{stroke:#a2b3c0;stroke-width:2;fill:none;stroke-linecap:round}.scene-point{fill:white;stroke:#667e8f;stroke-width:1.8}.scene-label{fill:#536d80;font:700 23px Georgia,serif;pointer-events:none}.stencil{stroke:#7455bf;stroke-width:4;stroke-dasharray:11 7;fill:none;stroke-linecap:round;pointer-events:none}.stencil.alt{stroke:#078e9f}.hit{stroke:transparent;stroke-width:34;cursor:grab;fill:none}.handle{fill:#fff;stroke:#7455bf;stroke-width:3;cursor:grab}.handle.alt{stroke:#078e9f}.rotator{fill:#7455bf;stroke:white;stroke-width:3;cursor:crosshair}.arc-blue{stroke:#0785b0;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.arc-orange{stroke:#e47718;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.arc-purple{stroke:#8a55c9;stroke-width:5;fill:none;stroke-linecap:round;pointer-events:none}.arc-green{stroke:#168a45;stroke-width:6;fill:none;stroke-linecap:round;pointer-events:none}.identified-line{stroke:#0794bc;stroke-width:7;stroke-linecap:round;opacity:.7;pointer-events:none}.identified-ray{stroke:#e4773d;stroke-width:7;stroke-linecap:round;opacity:.75;pointer-events:none}.gold{stroke:#d5a02d;stroke-width:5;pointer-events:none;stroke-linecap:round}.guide{fill:#fff;stroke:#d7e5ed;stroke-width:1.2}.tag{font:650 14px system-ui;fill:#7455bf;pointer-events:none}.status{font-size:13px;color:#61798a;max-width:650px}.chip{font-size:12px;color:#577286;background:#eff5f8;border-radius:6px;padding:5px 8px}#overlay{pointer-events:none}#controls{pointer-events:all}#stencilLayer{pointer-events:all}@media(max-width:720px){.shell{padding:7px}.app{grid-template-columns:1fr}.tools{flex-direction:row;flex-wrap:wrap;padding:7px}.tools h2,.tools .small,.tools .spacer{display:none}.tool{width:auto;flex:1;justify-content:center;padding:7px 4px;font-size:11px;gap:3px;flex-direction:column}.tool svg{height:22px}header{padding:8px}h1{font-size:19px}.topbar,.bottom{padding:9px}}
 footer.app-credit{margin-top:13px;text-align:center;color:#657b8c;font-size:12px}footer.app-credit span{font-weight:650}
 /* Full-width horizontal controls and uncluttered drawing space */
 .shell{max-width:none;padding:8px 12px}header{margin:0 0 6px}h1{font-size:17px}
@@ -9,17 +9,8 @@ footer.app-credit{margin-top:13px;text-align:center;color:#657b8c;font-size:12px
 .tool svg{width:28px;height:24px}.topbar{border:0;padding:0;gap:8px;flex:1;min-width:340px}.buttons{gap:4px}.buttons button{padding:6px 8px;font-size:11px}.scene-name{font-size:12px}
 .workspace{overflow:hidden;border-radius:8px}#board{height:calc(100vh - 132px);min-height:420px;aspect-ratio:auto;width:100%;background:white}
 footer.app-credit{margin-top:5px;font-size:11px}
-/* Compare the two emphasis treatments on the same diagram. */
-#board.diagram-focus .diagram{stroke:#4d6575;stroke-width:3.4}
-#board.template-focus .diagram{stroke:#8195a4;stroke-width:2.3;opacity:.6}
-#board.template-focus .stencil{stroke-width:4.3;opacity:.98}
-#board.template-focus .triangle-outline{stroke-width:4.4;opacity:1}
-#board.template-focus .triangle-region{fill-opacity:.31}
-#board.diagram-focus .triangle-outline{stroke-width:3.2;opacity:.8}
-#board.diagram-focus .triangle-region{fill-opacity:.23}
-
 @media(max-width:850px){.top-controls{gap:4px}.tools{width:100%;justify-content:space-around}.tool{flex:1}.topbar{min-width:0}.scene-name{display:none}#board{height:calc(100vh - 176px)}}
-</style></head><body><main class="shell"><header><div><h1>Geometry Overlay</h1></div></header><div class="app"><div class="top-controls"><aside class="tools"><button class="tool active" data-tool="vertical"><svg viewBox="0 0 40 34"><path d="M4 4L36 30M4 30L36 4" stroke="#7455bf" stroke-width="2.5"/><path d="M13 11Q20 16 27 11M13 23Q20 18 27 23" stroke="#0785b0" fill="none" stroke-width="2.5"/></svg>Vertical angles</button><button class="tool" data-tool="linear"><svg viewBox="0 0 40 34"><path d="M2 24H38M20 24L29 3" stroke="#7455bf" stroke-width="2.5" fill="none"/><path d="M12 24Q14 14 23 17" stroke="#0785b0" stroke-width="2.5" fill="none"/><path d="M23 17Q30 18 30 24" stroke="#e4773d" stroke-width="2.5" fill="none"/></svg>Linear pair</button><button class="tool" data-tool="parallel"><svg viewBox="0 0 40 34"><path d="M4 9L36 3M4 30L36 24" stroke="#7455bf" stroke-width="2.5" stroke-dasharray="5 3"/></svg>Parallel lines</button><button class="tool" data-tool="triangle"><svg viewBox="0 0 40 34"><path d="M4 29L18 3L36 29Z" stroke="#7455bf" stroke-width="2.5" fill="none"/><path d="M10 26L13 20M18 10L22 16M28 26L32 26" stroke-width="3" stroke="#0785b0"/></svg>Triangle</button></aside><div class="topbar"><span class="scene-name" id="sceneName">Triangle with a parallel segment</span><div class="buttons"><button id="emphasis" title="Switch between emphasizing the diagram and the movable templates">Emphasis: diagram</button><button id="newScene">New variation ↻</button><button id="family">Next family</button><button id="exportJson">Export JSON</button><button id="importJson">Import JSON</button><button id="exportSvg">Export SVG</button><input id="jsonFile" type="file" accept=".json,application/json" hidden><button id="reset">Reset selected</button><button id="toggle" class="primary">Remove selected</button></div></div></div><section class="workspace"><svg id="board" class="diagram-focus" viewBox="0 0 1000 620" aria-label="Interactive geometric diagram"><g id="diagram"></g><g id="overlay"></g><g id="stencilLayer"></g></svg></section></div><footer class="app-credit">Geometry Overlay <span>v2.7</span> · © 2026 Keegan Finlayson. All rights reserved.</footer></main><script>
+</style></head><body><main class="shell"><header><div><h1>Geometry Overlay</h1></div></header><div class="app"><div class="top-controls"><aside class="tools"><button class="tool active" data-tool="vertical"><svg viewBox="0 0 40 34"><path d="M4 4L36 30M4 30L36 4" stroke="#7455bf" stroke-width="2.5"/><path d="M13 11Q20 16 27 11M13 23Q20 18 27 23" stroke="#0785b0" fill="none" stroke-width="2.5"/></svg>Vertical angles</button><button class="tool" data-tool="linear"><svg viewBox="0 0 40 34"><path d="M2 24H38M20 24L29 3" stroke="#7455bf" stroke-width="2.5" fill="none"/><path d="M12 24Q14 14 23 17" stroke="#0785b0" stroke-width="2.5" fill="none"/><path d="M23 17Q30 18 30 24" stroke="#e4773d" stroke-width="2.5" fill="none"/></svg>Linear pair</button><button class="tool" data-tool="parallel"><svg viewBox="0 0 40 34"><path d="M4 9L36 3M4 30L36 24" stroke="#7455bf" stroke-width="2.5" stroke-dasharray="5 3"/></svg>Parallel lines</button><button class="tool" data-tool="triangle"><svg viewBox="0 0 40 34"><path d="M4 29L18 3L36 29Z" stroke="#7455bf" stroke-width="2.5" fill="none"/><path d="M10 26L13 20M18 10L22 16M28 26L32 26" stroke-width="3" stroke="#0785b0"/></svg>Triangle</button></aside><div class="topbar"><span class="scene-name" id="sceneName">Triangle with a parallel segment</span><div class="buttons"><button id="newScene">New variation ↻</button><button id="family">Next family</button><button id="exportJson">Export JSON</button><button id="importJson">Import JSON</button><button id="exportSvg">Export SVG</button><input id="jsonFile" type="file" accept=".json,application/json" hidden><button id="reset">Reset selected</button><button id="toggle" class="primary">Remove selected</button></div></div></div><section class="workspace"><svg id="board" viewBox="0 0 1000 620" aria-label="Interactive geometric diagram"><g id="diagram"></g><g id="overlay"></g><g id="stencilLayer"></g></svg></section></div><footer class="app-credit">Geometry Overlay <span>v2.6</span> · © 2026 Keegan Finlayson. All rights reserved.</footer></main><script>
 'use strict';
 const NS='http://www.w3.org/2000/svg',svg=document.querySelector('#board'),diagram=document.querySelector('#diagram'),overlayRoot=document.querySelector('#overlay'),layerRoot=document.querySelector('#stencilLayer');let overlay=overlayRoot,layer=layerRoot;const $=s=>document.querySelector(s);const make=(tag,attrs={},parent)=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(parent)parent.append(e);return e};const rad=d=>d*Math.PI/180,deg=r=>r*180/Math.PI,dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));const pt=(x,y)=>({x,y}),plus=(a,b)=>pt(a.x+b.x,a.y+b.y),minus=(a,b)=>pt(a.x-b.x,a.y-b.y),mul=(a,t)=>pt(a.x*t,a.y*t),unit=a=>mul(a,1/(Math.hypot(a.x,a.y)||1)),direction=a=>pt(Math.cos(a),Math.sin(a)),angle=(a,b)=>Math.atan2(b.y-a.y,b.x-a.x);let sceneIndex=0,scene,tool='vertical',drag=null,visible=true;let instances=[],activeId=null,nextId=1;let rootLayer=layerRoot,rootOverlay=overlayRoot;
 // Algebraic-geometric definitions: points and constrained geometric primitives.
@@ -116,7 +107,7 @@ function addInstance(kind){const obj={id:nextId++,kind,model:defaults[kind]()};i
 function selectInstance(id){const obj=instances.find(x=>x.id===id);if(!obj)return;activeId=id;tool=obj.kind;model=obj.model;visible=true;document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===tool));$('#toggle').textContent='Remove selected';}
 function resetTool(){const obj=instances.find(x=>x.id===activeId);if(obj){obj.model=defaults[obj.kind]();model=obj.model}else addInstance(tool);draw()}
 
-function nearPoint(p,r=18){const candidates=[...scene.ints,...Object.values(scene.P)];let best=null;for(const q of candidates){const d=dist(p,q);if(d<r&&(!best||d<best.d))best={p:q,d}}return best?.p||null}
+function nearPoint(p,r=22){const candidates=[...scene.ints,...Object.values(scene.P)];let best=null;for(const q of candidates){const d=dist(p,q);if(d<r&&(!best||d<best.d))best={p:q,d}}return best?.p||null}
 function nearestDirection(a,p,r=rad(5)){let best=null;for(const s of scene.seg){const v=minus(s.b,s.a),t=angle(s.a,s.b);for(let k=-2;k<=2;k++){const target=t+k*Math.PI;const delta=Math.abs(Math.atan2(Math.sin(a-target),Math.cos(a-target)));const w=minus(p,s.a),len=Math.hypot(v.x,v.y),perp=Math.abs(w.x*v.y-w.y*v.x)/len;if(delta<r&&perp<50&&(!best||delta<best.d))best={a:target,d:delta}}}return best?.a??a}
 function arc(c,start,end,r,cls,parent=layer){while(end<start)end+=2*Math.PI;const sweep=end-start;if(sweep<.03)return;const p=plus(c,mul(direction(start),r)),q=plus(c,mul(direction(end),r));make('path',{d:`M${p.x} ${p.y} A${r} ${r} 0 ${sweep>Math.PI?1:0} 1 ${q.x} ${q.y}`,class:cls},parent)}
 const ANGLE_RADIUS=35; // Constant marker size, independent of angle magnitude.
@@ -148,12 +139,6 @@ function congruentMarker(c,start,end,r,group,parent=layer){
  const trim=Math.min(.045,sweep*.08),st=start+trim,en=end-trim;
  const p=plus(c,mul(direction(st),r)),q=plus(c,mul(direction(en),r));
  make('path',{d:`M${c.x} ${c.y} L${p.x} ${p.y} A${r} ${r} 0 0 1 ${q.x} ${q.y} Z`,fill:color,'fill-opacity':'.23',stroke:'none','pointer-events':'none'},parent);
-}
-function filledAngle(c,start,end,r,color,opacity=.18){
- while(end<start)end+=2*Math.PI;
- const sweep=end-start;if(sweep<.002)return;
- const p=plus(c,mul(direction(start),r)),q=plus(c,mul(direction(end),r));
- make('path',{d:`M${c.x} ${c.y} L${p.x} ${p.y} A${r} ${r} 0 ${sweep>Math.PI?1:0} 1 ${q.x} ${q.y} Z`,fill:color,'fill-opacity':opacity,stroke:'none','pointer-events':'none'},layer);
 }
 function actualSectors(c,a,b){
  const norm=x=>(x%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
@@ -219,7 +204,7 @@ if(tool==='vertical'){
   const endpoint=plus(c,mul(direction(t),arms[j]));
   make('line',{x1:c.x,y1:c.y,x2:endpoint.x,y2:endpoint.y,class:'stencil'},layer);
   make('line',{x1:c.x,y1:c.y,x2:endpoint.x,y2:endpoint.y,class:'hit','data-action':j<2?'rotateA':'rotateB'},layer);
-  handle(endpoint,'arm'+j,'rotator',12);
+  handle(endpoint,'arm'+j,'rotator',9);
  }
  handle(c,'move');
 }
@@ -229,16 +214,15 @@ if(tool==='linear'){
  const norm=x=>(x%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
  const ccw=norm(b-a),start=ccw<Math.PI?a:a+Math.PI;
  const first=norm(b-start),endStraight=start+Math.PI;
- // Two gapless color fills cover the entire 180° angle through the vertex.
- const shadeRadius=Math.min(...arms);
- filledAngle(c,start,start+first,shadeRadius,'#0785b0');
- filledAngle(c,start+first,endStraight,shadeRadius,'#e47718');
+ const leftGap=MARKER_GAP;
+ congruentMarker(c,start+leftGap,start+first-leftGap,39,1);
+ congruentMarker(c,start+first+leftGap,endStraight-leftGap,45,2);
  for(let j=0;j<3;j++){
   const t=j===0?a:j===1?a+Math.PI:b;
   const endpoint=plus(c,mul(direction(t),arms[j]));
   make('line',{x1:c.x,y1:c.y,x2:endpoint.x,y2:endpoint.y,class:'stencil'},layer);
   make('line',{x1:c.x,y1:c.y,x2:endpoint.x,y2:endpoint.y,class:'hit','data-action':j<2?'rotateA':'rotateB'},layer);
-  handle(endpoint,'arm'+j,'rotator',12);
+  handle(endpoint,'arm'+j,'rotator',9);
  }
  handle(c,'move');
 }
@@ -253,58 +237,24 @@ if(tool==='parallel'){
  actualSectors(c,a,t);actualSectors(c2,a,t);
  }
  handle(c,'move');handle(c2,'move2','handle alt');handle(plus(c,mul(direction(a),155)),'angleA','rotator');
- const i1=nearPoint(c,17),i2=nearPoint(c2,17);
+ const i1=nearPoint(c,20),i2=nearPoint(c2,20);
  if(i1&&i2&&dist(i1,i2)>40){const common=scene.seg.find(s=>{const u=minus(s.b,s.a),len=Math.hypot(u.x,u.y);return Math.abs((i1.x-s.a.x)*u.y-(i1.y-s.a.y)*u.x)/len<4&&Math.abs((i2.x-s.a.x)*u.y-(i2.y-s.a.y)*u.x)/len<4});if(common)make('line',{x1:common.a.x,y1:common.a.y,x2:common.b.x,y2:common.b.y,class:'gold'},overlay)}
 }
-if(tool==='triangle'){
- const colors=['#0785b0','#e47718','#168a45'],v=model.v;
- const centroid=mul(v.reduce((acc,p)=>plus(acc,p),pt(0,0)),1/3);
- const midpoint=(a,b)=>mul(plus(a,b),.5);
- // Vertex-colored quadrilaterals meet at the centroid, each with 1/3 of total area.
- for(let i=0;i<3;i++){
-  const p=v[i],next=v[(i+1)%3],prev=v[(i+2)%3];
-  const corners=[p,midpoint(p,next),centroid,midpoint(prev,p)];
-  make('polygon',{points:corners.map(q=>`${q.x},${q.y}`).join(' '),
-   class:'triangle-region',fill:colors[i],'fill-opacity':'.23',stroke:'none','pointer-events':'none'},layer);
- }
- for(let j=0;j<3;j++){
-  const u=v[j],end=v[(j+1)%3];
-  make('line',{x1:u.x,y1:u.y,x2:end.x,y2:end.y,
-   class:'triangle-outline',stroke:colors[(j+2)%3],
-   'stroke-width':3.2,'stroke-linecap':'round','pointer-events':'none'},layer);
-  make('line',{x1:u.x,y1:u.y,x2:end.x,y2:end.y,class:'hit','data-action':'move'},layer);
- }
- for(let i=0;i<3;i++)handle(v[i],'vertex'+i);
- handle(centroid,'move','handle',10);
- make('text',{x:centroid.x+12,y:centroid.y-11,class:'tag'},layer).textContent='G';
-}
+if(tool==='triangle'){const [a,b,c]=model.v;make('polygon',{points:model.v.map(p=>`${p.x},${p.y}`).join(' '),fill:'#7455bf','fill-opacity':'.035',stroke:'none'},layer);const sideColors=['#0785b0','#e47718','#168a45'];for(let j=0;j<3;j++){const u=model.v[j],v=model.v[(j+1)%3];make('line',{x1:u.x,y1:u.y,x2:v.x,y2:v.y,stroke:sideColors[(j+2)%3],'stroke-width':6,'stroke-linecap':'round','stroke-dasharray':'11 7','pointer-events':'none'},layer);make('line',{x1:u.x,y1:u.y,x2:v.x,y2:v.y,class:'hit','data-action':'move'},layer)}for(let i=0;i<3;i++){const p=model.v[i],prev=model.v[(i+2)%3],next=model.v[(i+1)%3],start=angle(p,next),end=angle(p,prev);let delta=((end-start)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);let s=start,e=end;if(delta>Math.PI){s=end;e=start;delta=2*Math.PI-delta}arc(p,s+.07,s+delta-.07,ANGLE_RADIUS,['arc-blue','arc-orange','arc-green'][i]);handle(p,'vertex'+i)}const centroid=mul(model.v.reduce((acc,p)=>plus(acc,p),pt(0,0)),1/3);handle(centroid,'move','handle',10)}
 }
 const selected=instances.find(x=>x.id===activeId);if(selected){tool=selected.kind;model=selected.model;}layer=rootLayer;overlay=rootOverlay;
 }
 function svgPoint(e){const m=svg.getScreenCTM();if(!m)return null;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse());return pt(p.x,p.y)}
-svg.addEventListener('pointerdown',e=>{const action=e.target.getAttribute('data-action');if(!action)return;const owner=e.target.closest('[data-instance]');if(owner)selectInstance(Number(owner.dataset.instance));const p=svgPoint(e);if(!p)return;e.preventDefault();let base;
- if(tool==='triangle')base=action.startsWith('vertex')?model.v[+action.slice(-1)]:mul(model.v.reduce((s,v)=>plus(s,v),pt(0,0)),1/3);
- else if(action.startsWith('arm')){
-  const j=Number(action.slice(3));
-  const t=j===0?model.a:j===1?model.a+Math.PI:j===2&&tool==='vertical'?model.b:j===3?model.b+Math.PI:model.b;
-  base=plus(model.c,mul(direction(t),model.arms[j]));
- }else base=action==='move2'?model.c2:model.c;
- drag={id:e.pointerId,instanceId:activeId,action,start:p,offset:minus(p,base),original:JSON.parse(JSON.stringify(model)),startAngle:tool==='triangle'?0:angle(model.c,p)};svg.setPointerCapture(e.pointerId)});
-svg.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;selectInstance(drag.instanceId);const p=svgPoint(e);if(!p)return;e.preventDefault();const action=drag.action;if(action.startsWith('arm')){ 
- const j=Number(action.slice(3));
- // Endpoint drag changes the line bearing and only the grabbed ray's distance.
- const q=minus(p,drag.offset),v=minus(q,model.c),bearing=Math.atan2(v.y,v.x);
- model.arms[j]=clamp(Math.hypot(v.x,v.y),28,340);
- if(j===0||j===1)model.a=bearing-(j===1?Math.PI:0);
- else model.b=bearing-(tool==='vertical'&&j===3?Math.PI:0);
+svg.addEventListener('pointerdown',e=>{const action=e.target.getAttribute('data-action');if(!action)return;const owner=e.target.closest('[data-instance]');if(owner)selectInstance(Number(owner.dataset.instance));const p=svgPoint(e);if(!p)return;e.preventDefault();let base=tool==='triangle'?(action.startsWith('vertex')?model.v[+action.slice(-1)]:mul(model.v.reduce((s,v)=>plus(s,v),pt(0,0)),1/3)):action==='move2'?model.c2:model.c;drag={id:e.pointerId,instanceId:activeId,action,start:p,offset:minus(p,base),original:JSON.parse(JSON.stringify(model)),startAngle:tool==='triangle'?0:angle(model.c,p)};svg.setPointerCapture(e.pointerId)});
+svg.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;selectInstance(drag.instanceId);const p=svgPoint(e);if(!p)return;e.preventDefault();const action=drag.action;if(action.startsWith('arm')){
+ const j=Number(action.slice(3)),bearing=j===0?model.a:j===1?model.a+Math.PI:j===2&&tool==='vertical'?model.b:model.b+Math.PI;
+ const t=tool==='linear'&&j===2?model.b:bearing;
+ const v=minus(p,model.c);const projection=v.x*Math.cos(t)+v.y*Math.sin(t);
+ model.arms[j]=clamp(projection,28,340);
 }else if(tool==='triangle'){if(action.startsWith('vertex'))model.v[+action.slice(-1)]=pt(p.x-drag.offset.x,p.y-drag.offset.y);else{const delta=minus(p,drag.start);model.v=drag.original.v.map(v=>pt(v.x+delta.x,v.y+delta.y))}}else if(action==='move'||action==='move2'||action==='moveTransversal'){if(action==='moveTransversal'){const delta=minus(p,drag.start);model.c=plus(drag.original.c,delta);model.c2=plus(drag.original.c2,delta)}else{const key=action==='move2'?'c2':'c';model[key]=pt(p.x-drag.offset.x,p.y-drag.offset.y)}}else{const a=angle(model.c,p);const delta=Math.atan2(Math.sin(a-drag.startAngle),Math.cos(a-drag.startAngle));if(action==='angleA'||action==='rotateA')model.a=drag.original.a+delta;else model.b=drag.original.b+delta}draw()});
-function finish(e){if(!drag||drag.id!==e.pointerId)return;selectInstance(drag.instanceId);if(e.clientY < svg.getBoundingClientRect().top){instances=instances.filter(x=>x.id!==activeId);activeId=instances.at(-1)?.id??null;drag=null;draw();return}const a=drag.action;if(tool==='triangle'){if(a.startsWith('vertex')){const i=+a.slice(-1),q=nearPoint(model.v[i],17);if(q)model.v[i]={...q}}
- else if(a==='move'){
-  const center=mul(model.v.reduce((acc,v)=>plus(acc,v),pt(0,0)),1/3),q=nearPoint(center,17);
-  if(q){const delta=minus(q,center);model.v=model.v.map(v=>plus(v,delta))}
- }}else if(a==='move'||a==='move2'||a==='moveTransversal'){if(a!=='moveTransversal'){const key=a==='move2'?'c2':'c',q=nearPoint(model[key],17);if(q)model[key]={...q}}}else if(a.startsWith('arm')){/* Arm length is independent of rotation. */}else if(a==='angleA'||a==='rotateA'){model.a=nearestDirection(model.a,model.c)}else if(a==='angleB'||a==='rotateB'){model.b=nearestDirection(model.b,model.c)}drag=null;draw()}
+function finish(e){if(!drag||drag.id!==e.pointerId)return;selectInstance(drag.instanceId);if(e.clientY < svg.getBoundingClientRect().top){instances=instances.filter(x=>x.id!==activeId);activeId=instances.at(-1)?.id??null;drag=null;draw();return}const a=drag.action;if(tool==='triangle'){if(a.startsWith('vertex')){const i=+a.slice(-1),q=nearPoint(model.v[i],21);if(q)model.v[i]={...q}}}else if(a==='move'||a==='move2'||a==='moveTransversal'){if(a!=='moveTransversal'){const key=a==='move2'?'c2':'c',q=nearPoint(model[key],20);if(q)model[key]={...q}}}else if(a.startsWith('arm')){/* Arm length is independent of rotation. */}else if(a==='angleA'||a==='rotateA'){model.a=nearestDirection(model.a,model.c)}else if(a==='angleB'||a==='rotateB'){model.b=nearestDirection(model.b,model.c)}drag=null;draw()}
 svg.addEventListener('pointerup',finish);svg.addEventListener('pointercancel',e=>{if(drag&&e.pointerId===drag.id){drag=null;draw()}});svg.addEventListener('lostpointercapture',e=>{if(drag&&e.pointerId===drag.id){drag=null;draw()}});
-const descriptions={vertical:'Drag the center to move. Drag any of four endpoints: its line rotates, but only the grabbed arm changes length.',linear:'Align the vertex and three rays to identify a linear pair; the two angular sectors cover the whole straight angle, with no gaps.',parallel:'Drag the first line to rotate it; drag its center to move it. Slide the second without changing its direction.',triangle:'Drag a side or the centroid G to move the triangle; drag vertices to reshape it. Three corner colors each fill one third of the area.'};for(const btn of document.querySelectorAll('[data-tool]'))btn.onclick=()=>{if(suppressPaletteClick)return;addInstance(btn.dataset.tool)};$('#emphasis').onclick=()=>{const templates=svg.classList.toggle('template-focus');svg.classList.toggle('diagram-focus',!templates);$('#emphasis').textContent='Emphasis: '+(templates?'templates':'diagram')};$('#newScene').onclick=()=>{customDefinition=null;variation++;setScene()};$('#family').onclick=()=>{customDefinition=null;familyIndex=(familyIndex+1)%families.length;variation=0;setScene()};$('#reset').onclick=resetTool;$('#toggle').onclick=()=>{instances=instances.filter(x=>x.id!==activeId);activeId=instances.at(-1)?.id??null;draw()};$('#exportJson').onclick=()=>downloadFile('geometry-diagram.json',JSON.stringify(scene.def,null,2),'application/json');
+const descriptions={vertical:'Drag the center to move; drag either dashed line to rotate. Shaded angle regions remain visible before snapping. Drag an arm endpoint to change its length, or drag the arm to rotate.',linear:'Align the vertex and both rays to identify a linear pair. Both identified lines highlight continuously through their intersection; the shaded angle regions stay on the side containing the third ray.',parallel:'Drag the first line to rotate it; drag its center to move it. Slide the second without changing its direction.',triangle:'Drag a side to move the triangle; drag its vertices to reshape it. Each angle matches its opposite side: blue, orange, and green.'};for(const btn of document.querySelectorAll('[data-tool]'))btn.onclick=()=>{if(suppressPaletteClick)return;addInstance(btn.dataset.tool)};$('#newScene').onclick=()=>{customDefinition=null;variation++;setScene()};$('#family').onclick=()=>{customDefinition=null;familyIndex=(familyIndex+1)%families.length;variation=0;setScene()};$('#reset').onclick=resetTool;$('#toggle').onclick=()=>{instances=instances.filter(x=>x.id!==activeId);activeId=instances.at(-1)?.id??null;draw()};$('#exportJson').onclick=()=>downloadFile('geometry-diagram.json',JSON.stringify(scene.def,null,2),'application/json');
 $('#importJson').onclick=()=>$('#jsonFile').click();
 $('#jsonFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=validateDefinition(JSON.parse(await f.text()));customDefinition=d;setScene()}catch(err){alert('Could not import diagram: '+err.message)}e.target.value=''};
 $('#exportSvg').onclick=()=>{const copy=svg.cloneNode(true);copy.querySelector('#overlay')?.remove();copy.querySelector('#stencilLayer')?.remove();copy.setAttribute('xmlns',NS);const style=document.createElementNS(NS,'style');style.textContent='.diagram{stroke:#667e8f;stroke-width:2.8;fill:none;stroke-linecap:round}.scene-point{fill:white;stroke:#667e8f;stroke-width:1.8}.scene-label{fill:#536d80;font:bold 23px Georgia,serif}';copy.prepend(style);downloadFile('geometry-diagram.svg',new XMLSerializer().serializeToString(copy),'image/svg+xml')};
@@ -342,7 +292,7 @@ for(const btn of document.querySelectorAll('[data-tool]')){
    suppressPaletteClick=true;
    if(e.clientY<svg.getBoundingClientRect().top){instances=instances.filter(x=>x.id!==activeId);activeId=instances.at(-1)?.id??null;draw()}
    else if(tool!=='triangle'){
-    const q=nearPoint(model.c,17);if(q){const delta=minus(q,model.c);model.c=q;if(tool==='parallel')model.c2=plus(model.c2,delta)}
+    const q=nearPoint(model.c,20);if(q){const delta=minus(q,model.c);model.c=q;if(tool==='parallel')model.c2=plus(model.c2,delta)}
     draw();
    }
   }
