@@ -1,23 +1,129 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Overlay v3.4 · Workbench</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Overlay v4.0 · Workbench</title><style>
 :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#263e4e;background:#f3f6f9;font-synthesis:none}
 *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input{font:inherit}button{cursor:pointer;border:1px solid #d3dfe8;background:#fff;color:#345365;border-radius:9px;padding:8px 11px;font-size:12px;font-weight:650;transition:background .12s,border-color .12s}button:hover{background:#eaf5fa;border-color:#aac9d9}button:focus-visible,summary:focus-visible{outline:3px solid #68a9d3;outline-offset:2px}button:disabled{cursor:default;opacity:.35}.appShell{margin:auto;max-width:1640px;min-height:100vh;padding:12px 14px;display:flex;flex-direction:column;gap:10px}.appHeader{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:baseline;gap:11px}.brand h1{margin:0;font-size:19px;letter-spacing:-.5px;color:#1b3446}.version{font-size:11px;font-weight:600;color:#8a9aa5}.headerActions,.minorActions,.tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.primary{background:#183d55;color:#fff;border-color:#183d55}.primary:hover{background:#245873;color:#fff}.toolStrip{background:#fff;border:1px solid #dde5eb;border-radius:12px;padding:9px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.tools{gap:5px}.tool{display:flex;align-items:center;gap:8px;padding:8px 11px;border-color:transparent;font-size:13px;white-space:nowrap}.tool svg{width:27px;height:22px;flex:none}.tool.active{color:#25628d;background:#e9f3fa;border-color:#b4d5e7;box-shadow:inset 0 0 0 1px #dbeaf2}.tool[data-tool="triangle"].active{color:#5c4a9b}.divider{width:1px;height:29px;background:#e2e9ef;margin:0 5px}.smallLabel{font-size:11px;color:#8193a0;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.stage{background:white;border:1px solid #d6e3eb;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px #36536b09;display:flex;flex-direction:column;flex:1;min-height:460px}.stageHeading{height:43px;padding:0 15px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid #e8edf1}.scene-name{font-size:13px;font-weight:700;color:#2f5066}.hint{font-size:12px;color:#718698;text-align:right}.drawing{position:relative;flex:1;min-height:430px;display:flex;align-items:center;justify-content:center;background:#fff}#board{width:100%;height:min(73vh,calc(100vw * .61));min-height:420px;display:block;touch-action:none;user-select:none;background:#fff}.stageFoot{min-height:43px;border-top:1px solid #e8edf1;padding:10px 15px;display:flex;align-items:center;justify-content:space-between;gap:16px}.selectionInfo{font-size:12px;color:#516b7c}.snapInfo{font-size:12px;color:#16806e;font-weight:650;min-width:140px;text-align:right}.more{margin-left:auto;background:#fff;border:1px solid #dde6ec;border-radius:10px;padding:7px 12px;max-width:100%}.more summary{font-size:12px;color:#698396;font-weight:650;cursor:pointer}.moreButtons{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}footer{text-align:center;color:#8fa1ae;font-size:11px;padding-bottom:2px}
 .diagram{stroke:#4f6575;stroke-width:3.2;fill:none;stroke-linecap:round}.aux{stroke:#9dacb8;stroke-width:2;fill:none;stroke-linecap:round}.scene-point{fill:#111;stroke:#111;stroke-width:1;pointer-events:none}.scene-label{fill:#385568;font:700 22px Georgia,serif;pointer-events:none}
 .stencil{stroke:#725abd;stroke-width:3.15;opacity:.83;fill:none;stroke-linecap:round;pointer-events:none}.stencil.alt{stroke:#1691a5}.triangle-outline{fill:none;stroke-linecap:round;stroke-width:3;pointer-events:none}.hit{stroke:transparent;stroke-width:22;fill:none;stroke-linecap:round;cursor:move}.hit.rotate-whole{cursor:crosshair}.hit.rotate-whole:hover{stroke:#7354c728}.touch-target{fill:transparent;stroke:none;cursor:grab}.touch-target:active{cursor:grabbing}.handle,.rotator{fill:#fff;stroke:#7354c7;stroke-width:2.15;pointer-events:none}.handle.alt{stroke:#1096a6}.rotator{stroke:#7254c7}.identified-line{stroke:#0e98c4;stroke-width:6;opacity:.6;pointer-events:none}.identified-ray{stroke:#dd8a35;stroke-width:6;opacity:.65;pointer-events:none}.gold{stroke:#d5a02d;stroke-width:5;opacity:.65;pointer-events:none;stroke-linecap:round}.arc-blue{stroke:#0785b0;stroke-width:5;fill:none;stroke-linecap:round;pointer-events:none}.arc-orange{stroke:#e47718;stroke-width:5;fill:none;stroke-linecap:round;pointer-events:none}.arc-green{stroke:#168a45;stroke-width:5;fill:none;stroke-linecap:round;pointer-events:none}.arc-purple{stroke:#8a55c9;stroke-width:5;fill:none;stroke-linecap:round;pointer-events:none}.tag{font:600 12px system-ui;fill:#7354c7;pointer-events:none}
 .template{opacity:.6;transition:opacity .12s}.template.selected{opacity:1}.template:not(.selected):hover{opacity:.9}.template.selected .stencil{stroke-width:3.5;opacity:.98}.template.selected .touch-target + .marker{filter:drop-shadow(0 0 2px #e0d4f6)}.template.selected .triangle-region{fill-opacity:.50}.triangle-region{fill-opacity:.50;pointer-events:none}.template .hit:hover{stroke:#8a6cdb30}.marker{r:5.8;pointer-events:none}.snapMarker{fill:#d1f8ea;stroke:#12a37d;stroke-width:2;pointer-events:none}.snapHalo{fill:none;stroke:#12a37d;stroke-width:1.8;stroke-dasharray:3 4;pointer-events:none}.moveSurface{fill:transparent;stroke:none;cursor:move}
 @media(max-width:780px){.appShell{padding:7px;gap:6px}.appHeader{align-items:start}.brand{flex-wrap:wrap;gap:4px}.brand h1{font-size:16px}.headerActions{gap:5px}.toolStrip{padding:7px;gap:7px}.tools{width:100%;justify-content:space-around}.tool{flex:1;flex-direction:column;padding:5px 3px;gap:3px;font-size:11px}.tool svg{height:19px}.divider{display:none}.stageHeading{height:auto;min-height:42px;padding:8px}.hint{font-size:10px}.drawing{min-height:290px}#board{min-height:280px;height:58vh}.stage{min-height:350px}.stageFoot{padding:8px}.smallLabel{display:none}}
-</style></head><body><main class="appShell">
-<header class="appHeader"><div class="brand"><h1>Geometry Overlay</h1><span class="version">v3.4 · Workbench</span></div><div class="headerActions"><button id="undo" title="Undo (Ctrl+Z)">Undo</button><button id="redo" title="Redo (Ctrl+Shift+Z)">Redo</button><button id="snapToggle" class="primary" title="Toggle snapping. Hold Alt while dragging to temporarily ignore snapping.">Snap: on</button></div></header>
-<div class="toolStrip"><div class="tools" role="group" aria-label="Geometry tools">
-<button class="tool active" data-tool="vertical" title="Choose vertical angles"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M5 3 L33 27 M5 27 L33 3" stroke="#765abf" stroke-width="2.3"/><circle cx="19" cy="15" r="3" fill="white" stroke="#765abf" stroke-width="1.5"/></svg>Vertical angles</button>
-<button class="tool" data-tool="linear" title="Choose linear pair"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M3 24H35 M19 24L29 4" stroke="#765abf" stroke-width="2.3" fill="none"/><circle cx="19" cy="24" r="2.6" fill="white" stroke="#765abf"/></svg>Linear pair</button>
-<button class="tool" data-tool="parallel" title="Choose parallel lines"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M2 9L36 4 M2 26L36 21" stroke="#765abf" stroke-width="2.3"/></svg>Parallel lines</button>
-<button class="tool" data-tool="triangle" title="Choose triangle"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M4 27L18 3L35 27Z" stroke="#765abf" stroke-width="2.3" fill="#b5a7eb22"/></svg>Triangle</button>
-</div><div class="minorActions"><button id="addTool" title="Add a second copy of the selected tool">+ Another</button><button id="reset" title="Restore the selected tool's default shape">Reset tool</button><button id="toggle" title="Delete the selected template">Remove</button></div></div>
-<section class="stage"><div class="stageHeading"><span class="scene-name" id="sceneName">Geometric diagram</span><span class="hint" id="hint">Move using the center handle; reshape using hollow endpoints.</span></div>
-<div class="drawing"><svg id="board" viewBox="0 0 1000 620" role="img" aria-label="Geometry diagram with draggable translucent tools"><g id="diagram"></g><g id="overlay"></g><g id="stencilLayer"></g><g id="snapLayer"></g></svg></div>
-<div class="stageFoot"><span class="selectionInfo" id="selectionInfo">Select a tool to explore the diagram.</span><span class="snapInfo" id="snapInfo" aria-live="polite"></span></div></section>
-<details class="more"><summary>Change diagram · Import / export</summary><div class="moreButtons"><button id="newScene">New variation</button><button id="family">Next diagram</button><button id="exportJson">Export diagram JSON</button><button id="importJson">Import JSON</button><button id="exportSvg">Export diagram SVG</button><input id="jsonFile" type="file" accept=".json,application/json" hidden></div></details>
-<footer>Geometry Overlay v3.4 · © 2026 Keegan Finlayson</footer></main><script>
+
+/* v4 construction workspace */
+.mainWorkspace{display:grid;grid-template-columns:220px minmax(0,1fr) 212px;gap:11px;flex:1;min-height:0}
+.sidePanel,.inspector{background:#fff;border:1px solid #d6e3eb;border-radius:13px;padding:11px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.panelSection{display:flex;flex-direction:column;gap:5px}
+.panelTitle{font-size:14px;margin:0 0 4px;color:#1c3749}
+.panelHint{font-size:11px;color:#6d8695;margin:1px 2px 8px;line-height:1.4}
+.buildButtons,.analysisButtons{display:flex;flex-direction:column;gap:5px}
+.buildButton,.sidePanel .tool{display:flex;justify-content:flex-start;align-items:center;width:100%;padding:9px 10px;gap:10px;font-size:13px;border:1px solid #d8e3ec;border-radius:9px;background:#fff;color:#294859;text-align:left;box-shadow:none}
+.buildButton.active{border-color:#69a5d0;background:#e7f3ff;color:#134e80}
+.sidePanel .tool.active{border-color:#b5a1e7;background:#f2edff;color:#58429c}
+.buildIcon{width:24px;text-align:center;color:#315b78;font-weight:800;font-size:17px}
+.panelDivider{height:1px;background:#e3ebf1;margin:1px 0}
+.modeTabs{display:flex;gap:4px;background:#e8eff5;border-radius:10px;padding:4px}
+.modeButton{border:0;background:transparent;padding:9px 18px;font-size:14px;color:#4a6478}
+.modeButton.active{background:#fff;box-shadow:0 2px 7px #18384825;color:#13577e}
+.inspector h3{font-size:13px;margin:0 0 8px;color:#1c3749}
+.inspectorField{display:flex;flex-direction:column;gap:5px;font-size:12px;color:#536e80}
+.inspectorField input{border:1px solid #b9d0df;border-radius:7px;padding:7px 8px;width:100%;font-size:14px;background:#fff}
+.checkRow{display:flex;gap:8px;align-items:center;font-size:12px;padding:4px 0;cursor:pointer}
+.checkRow input{accent-color:#2473ab;width:16px;height:16px}
+.inspectorSection{border-bottom:1px solid #e5edf2;padding-bottom:12px}
+.inspectorSection:last-child{border-bottom:0;padding-bottom:0}
+.mutedStatus{font-size:12px;line-height:1.55;color:#6c8293}
+.panelAction{width:100%;text-align:center;font-size:12px}
+.build-mode #stencilLayer{opacity:.32;pointer-events:none}
+.build-mode #stencilLayer *{pointer-events:none!important}
+.build-mode #overlay{opacity:.22}
+.analyze-mode #stencilLayer{opacity:1}
+#gridLayer{pointer-events:none}
+.grid-line{stroke:#e5edf3;stroke-width:.85}
+.construction-hit{fill:transparent;stroke:none;cursor:grab;pointer-events:all}
+.construction-hit:active{cursor:grabbing}
+.build-mode #board{cursor:crosshair}
+.build-mode[data-draw-tool="select"] #board{cursor:default}
+.build-preview{stroke:#1682b5;stroke-width:2.8;stroke-dasharray:8 6;fill:none;pointer-events:none}
+.build-preview-point{fill:#fff;stroke:#1682b5;stroke-width:2;pointer-events:none}
+#buildPreview{pointer-events:none}
+#board .scene-point{r:6.2}
+#board .intersection-point{fill:#657d8c;stroke:#fff;stroke-width:1.3;r:4.2}
+#board .selected-construction-point{fill:#fff;stroke:#0d75b7;stroke-width:3;r:8}
+.stage{min-height:520px}
+#board{height:min(78vh,calc(100vw * .68));min-height:480px}
+.sidePanel .tool svg{width:27px;height:22px}
+#buildStatus{min-height:24px}
+@media(max-width:1120px){
+ .mainWorkspace{grid-template-columns:188px minmax(0,1fr)}
+ .inspector{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;gap:16px}
+ .inspectorSection{border-bottom:0;border-right:1px solid #e5edf2;padding-right:16px}
+ .inspectorSection:last-child{border-right:0}
+}
+@media(max-width:720px){
+ .mainWorkspace{display:flex;flex-direction:column;gap:7px}
+ .sidePanel{padding:8px;gap:7px}
+ .panelSection{gap:4px}
+ .buildButtons,.analysisButtons{display:flex;flex-direction:row;overflow-x:auto;gap:5px}
+ .buildButton,.sidePanel .tool{width:auto;white-space:nowrap;flex:none;padding:7px 9px;font-size:11px}
+ .panelHint{display:none}
+ .inspector{flex-direction:column}
+ .inspectorSection{border-right:0;border-bottom:1px solid #e5edf2}
+ .stage{min-height:330px}
+ #board{height:55vh;min-height:290px}
+ .modeButton{padding:7px 10px;font-size:12px}
+ .appHeader{flex-wrap:wrap}
+ .headerActions{margin-left:auto}
+}</style></head><body><main class="appShell">
+<header class="appHeader"><div class="brand"><h1>Geometry Overlay</h1><span class="version">v4.0 · Workbench</span></div><nav class="modeTabs" aria-label="Workspace mode"><button id="modeBuild" class="modeButton active" aria-pressed="true">✎ Build</button><button id="modeAnalyze" class="modeButton" aria-pressed="false">◎ Analyze</button></nav><div class="headerActions"><button id="undo" title="Undo (Ctrl+Z)">Undo</button><button id="redo" title="Redo (Ctrl+Shift+Z)">Redo</button><button id="snapToggle" class="primary" title="Toggle snapping. Hold Alt while dragging to temporarily ignore snapping.">Snap: on</button></div></header>
+<div class="mainWorkspace" id="workspaceRoot">
+<aside class="sidePanel" aria-label="Geometry tools">
+ <section class="panelSection"><h2 class="panelTitle">Build <span class="mutedStatus">(draw your own)</span></h2>
+ <div class="buildButtons" role="group" aria-label="Construction tools">
+  <button class="buildButton active" data-draw-tool="select"><span class="buildIcon">↖</span>Select / Move</button>
+  <button class="buildButton" data-draw-tool="point"><span class="buildIcon">●</span>Point</button>
+  <button class="buildButton" data-draw-tool="segment"><span class="buildIcon">•—•</span>Segment</button>
+  <button class="buildButton" data-draw-tool="line"><span class="buildIcon">↔</span>Line</button>
+  <button class="buildButton" data-draw-tool="ray"><span class="buildIcon">•→</span>Ray</button>
+ </div><p class="panelHint">Choose a tool; click the canvas. Drag points to reshape connected geometry.</p></section>
+ <div class="panelDivider"></div>
+ <section class="panelSection"><h2 class="panelTitle">Analyze <span class="mutedStatus">(overlay tools)</span></h2>
+ <div class="analysisButtons" role="group" aria-label="Analysis overlays">
+ <button class="tool" data-tool="vertical"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M5 3L33 27M5 27L33 3" stroke="#765abf" stroke-width="2.3"/><circle cx="19" cy="15" r="3" fill="white" stroke="#765abf"/></svg>Vertical angles</button>
+ <button class="tool" data-tool="linear"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M3 24H35M19 24L29 4" stroke="#765abf" stroke-width="2.3" fill="none"/></svg>Linear pair</button>
+ <button class="tool" data-tool="parallel"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M2 9L36 4M2 26L36 21" stroke="#765abf" stroke-width="2.3"/></svg>Parallel lines</button>
+ <button class="tool" data-tool="triangle"><svg viewBox="0 0 38 30" aria-hidden="true"><path d="M4 27L18 3L35 27Z" stroke="#765abf" stroke-width="2.3" fill="#b5a7eb22"/></svg>Triangle</button>
+ </div><p class="panelHint">Switch to Analyze, then drag each overlay over your diagram.</p></section>
+ <div class="panelDivider"></div>
+ <section class="panelSection"><h2 class="panelTitle">Workspace</h2>
+  <button class="panelAction" id="blankCanvas">Blank canvas</button><button class="panelAction" id="loadExample">Example diagram</button>
+  <button class="panelAction" id="addTool">+ Another overlay</button><button class="panelAction" id="reset">Reset selected overlay</button><button class="panelAction" id="toggle">Remove overlay</button>
+ </section>
+</aside>
+<section class="stage"><div class="stageHeading"><span class="scene-name" id="sceneName">My construction</span><span class="hint" id="hint">Select a drawing tool to begin.</span></div>
+ <div class="drawing"><svg id="board" viewBox="0 0 1000 620" role="img" aria-label="Editable geometry construction and analysis workbench"><g id="gridLayer"></g><g id="diagram"></g><g id="overlay"></g><g id="stencilLayer"></g><g id="buildPreview"></g><g id="snapLayer"></g></svg></div>
+ <div class="stageFoot"><span class="selectionInfo" id="selectionInfo">Build a diagram using points, lines, rays and segments.</span><span class="snapInfo" id="snapInfo" aria-live="polite"></span></div>
+</section>
+<aside class="inspector" aria-label="Construction options">
+ <section class="inspectorSection"><h3>Properties</h3><div id="emptyProperties" class="mutedStatus">Select a point to see its details.</div>
+  <div id="pointProperties" hidden><label class="inspectorField">Point label<input id="pointName" maxlength="12" autocomplete="off"></label>
+   <div id="pointCoords" class="mutedStatus" style="margin:9px 0"></div><button id="deletePoint" class="panelAction">Delete point</button>
+  </div>
+ </section>
+ <section class="inspectorSection"><h3>Options</h3>
+  <label class="checkRow"><input type="checkbox" id="gridToggle">Show grid</label>
+  <label class="checkRow"><input type="checkbox" id="labelsToggle" checked>Show labels</label>
+  <label class="checkRow"><input type="checkbox" id="snapPointsToggle" checked disabled>Points and lines snap together</label>
+ </section>
+ <section class="inspectorSection"><h3>Construction</h3><div class="mutedStatus" id="buildStatus">No points yet.</div></section>
+ <section class="inspectorSection"><h3>File</h3><button id="saveProject" class="panelAction">Save project</button><button id="loadProject" class="panelAction">Load project</button>
+  <input id="projectFile" type="file" accept=".json,application/json" hidden>
+  <button id="clearCanvas" class="panelAction">Clear construction</button>
+ </section>
+</aside>
+</div>
+<details class="more"><summary>Examples · Diagram import and export</summary><div class="moreButtons">
+ <button id="newScene">New variation</button><button id="family">Next example</button>
+ <button id="exportJson">Export diagram JSON</button><button id="importJson">Import diagram JSON</button><button id="exportSvg">Export diagram SVG</button>
+ <input id="jsonFile" type="file" accept=".json,application/json" hidden>
+</div></details>
+<footer>Geometry Overlay v4.0 · © 2026 Keegan Finlayson</footer></main><script>
 'use strict';
 const NS='http://www.w3.org/2000/svg',svg=document.querySelector('#board'),diagram=document.querySelector('#diagram'),overlayRoot=document.querySelector('#overlay'),layerRoot=document.querySelector('#stencilLayer');let overlay=overlayRoot,layer=layerRoot;const $=s=>document.querySelector(s);const make=(tag,attrs={},parent)=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(parent)parent.append(e);return e};const rad=d=>d*Math.PI/180,deg=r=>r*180/Math.PI,dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));const pt=(x,y)=>({x,y}),plus=(a,b)=>pt(a.x+b.x,a.y+b.y),minus=(a,b)=>pt(a.x-b.x,a.y-b.y),mul=(a,t)=>pt(a.x*t,a.y*t),unit=a=>mul(a,1/(Math.hypot(a.x,a.y)||1)),direction=a=>pt(Math.cos(a),Math.sin(a)),angle=(a,b)=>Math.atan2(b.y-a.y,b.x-a.x);let sceneIndex=0,scene,tool='vertical',drag=null,visible=true;let instances=[],activeId=null,nextId=1;let rootLayer=layerRoot,rootOverlay=overlayRoot;
 // Algebraic-geometric definitions: points and constrained geometric primitives.
@@ -28,6 +134,7 @@ const families=[
  {name:'Interconnected triangles',points:{A:[210,480],B:[790,480],C:[485,115],D:[360,480],E:[635,480],F:[485,285]},objects:[{type:'segment',through:['A','B']},{type:'segment',through:['A','C']},{type:'segment',through:['C','B']},{type:'segment',through:['D','F']},{type:'segment',through:['F','E']},{type:'segment',through:['C','F']}]}
 ];
 let familyIndex=0,variation=0,customDefinition=null;
+let editMode='build',drawTool='select',pendingPointId=null,selectedPoint=null,hoverPreview=null,showGrid=false,showLabels=true,buildDrag=null;
 function transformedDefinition(def,seed){
  const theta=[0,.11,-.14,.19,-.08][seed%5],sx=[1,.94,1.05,.97][seed%4],sy=[1,1.04,.96][seed%3];
  const co=Math.cos(theta),si=Math.sin(theta),P={};
@@ -98,8 +205,17 @@ function setScene(){
   if(d.type==='line'||d.type==='ray')addArrow(d.b,d.a);
   if(d.type==='line')addArrow(d.a,d.b);
  }
- const occupied=[];for(const {name,p} of named){if(p.x<35||p.x>965||p.y<35||p.y>585)continue;make('circle',{cx:p.x,cy:p.y,r:6.5,class:'scene-point'},diagram);labelAt(name,p,occupied);}
- $('#sceneName').textContent=def.name;draw();
+ drawGrid();
+ const occupied=[];for(const {name,p} of named){
+  if(p.x<35||p.x>965||p.y<35||p.y>585)continue;
+  const real=Object.prototype.hasOwnProperty.call(P,name);
+  make('circle',{cx:p.x,cy:p.y,r:real?6.5:4.2,class:real?'scene-point'+(selectedPoint===name?' selected-construction-point':''):'scene-point intersection-point'},diagram);
+  if(showLabels&&(real||editMode==='analyze'))labelAt(name,p,occupied);
+ }
+ if(editMode==='build')for(const [name,p] of Object.entries(P)){
+  make('circle',{cx:p.x,cy:p.y,r:Math.max(15,17/snapScale()),class:'construction-hit','data-point':name},diagram);
+ }
+ $('#sceneName').textContent=def.name;draw();renderBuildPreview();updateProperties();
 }
 function clipSegment(a,b,xmin,xmax,ymin,ymax){
  let t0=0,t1=1,dx=b.x-a.x,dy=b.y-a.y;
@@ -123,21 +239,25 @@ function selectInstance(id){const obj=instances.find(x=>x.id===id);if(!obj)retur
 function resetTool(){const obj=instances.find(x=>x.id===activeId);if(!obj)return;obj.model=defaults[obj.kind]();model=obj.model;snapVisual=null;draw();checkpoint()}
 function updateControls(){
  const selected=instances.find(x=>x.id===activeId);const kind=selected?.kind||tool;
- document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===kind));
- const info=$('#selectionInfo'),hint=$('#hint');if(info)info.textContent=selected?`${toolNames[kind]} · ${instances.length} tool${instances.length!==1?'s':''} on diagram`:'No tool selected';
- if(hint)hint.textContent=tipFor[kind]||'Drag tools directly on the diagram.';
+ document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',editMode==='analyze'&&b.dataset.tool===kind));
+ const info=$('#selectionInfo'),hint=$('#hint');if(info)info.textContent=editMode==='build'?'Construct with points, segments, rays, and lines.':selected?`${toolNames[kind]} · ${instances.length} tool${instances.length!==1?'s':''} on diagram`:'Choose an analysis overlay.';
+ if(hint)hint.textContent=editMode==='build'?(
+  pendingPointId?'Click a second point to finish the '+drawTool+'. Press Esc to cancel.':
+  drawTool==='select'?'Drag a point to reshape all connected segments and lines.':
+  drawTool==='point'?'Click anywhere to create a point.':'Click two points, or click empty space to create them.'
+ ):tipFor[kind]||'Drag tools directly on the diagram.';
  $('#toggle').disabled=!selected;$('#reset').disabled=!selected;
  $('#undo').disabled=historyIndex<=0;$('#redo').disabled=historyIndex>=history.length-1;
- $('#snapToggle').textContent='Snap: '+(snapEnabled?'on':'off');$('#snapToggle').classList.toggle('primary',snapEnabled);
+ $('#snapToggle').textContent='Snap: '+(snapEnabled?'on':'off');$('#snapToggle').classList.toggle('primary',snapEnabled);refreshModeUI();
 }
 function checkpoint(){
- const snapshot=JSON.stringify({instances,activeId,nextId,familyIndex,variation,customDefinition});
+ const snapshot=JSON.stringify({instances,activeId,nextId,familyIndex,variation,customDefinition,editMode,drawTool,selectedPoint,showGrid,showLabels});
  if(history[historyIndex]===snapshot)return;
  history=history.slice(0,historyIndex+1);history.push(snapshot);if(history.length>60)history.shift();historyIndex=history.length-1;
  updateControls();
 }
 function restoreHistory(delta){const next=historyIndex+delta;if(next<0||next>=history.length)return;historyIndex=next;
- const snap=JSON.parse(history[historyIndex]);instances=snap.instances;activeId=snap.activeId;nextId=snap.nextId;familyIndex=snap.familyIndex;variation=snap.variation;customDefinition=snap.customDefinition;
+ const snap=JSON.parse(history[historyIndex]);instances=snap.instances;activeId=snap.activeId;nextId=snap.nextId;familyIndex=snap.familyIndex;variation=snap.variation;customDefinition=snap.customDefinition;editMode=snap.editMode||'build';drawTool=snap.drawTool||'select';selectedPoint=snap.selectedPoint??null;showGrid=!!snap.showGrid;showLabels=snap.showLabels!==false;pendingPointId=null;hoverPreview=null;
  const selected=instances.find(x=>x.id===activeId);tool=selected?.kind||'vertical';model=selected?.model||defaults.vertical();snapVisual=null;setScene();updateControls();}
 function nearPoint(p,r=22){const candidates=[...scene.ints,...Object.values(scene.P)];let best=null;for(const q of candidates){const d=dist(p,q);if(d<r&&(!best||d<best.d))best={p:q,d}}return best?.p||null}
 function nearestDirection(a,p,r=rad(5)){let best=null;for(const s of scene.seg){const v=minus(s.b,s.a),t=angle(s.a,s.b);for(let k=-2;k<=2;k++){const target=t+k*Math.PI;const delta=Math.abs(Math.atan2(Math.sin(a-target),Math.cos(a-target)));const w=minus(p,s.a),len=Math.hypot(v.x,v.y),perp=Math.abs(w.x*v.y-w.y*v.x)/len;if(delta<r&&perp<50&&(!best||delta<best.d))best={a:target,d:delta}}}return best?.a??a}
@@ -296,7 +416,7 @@ function draw(){
    for(let i=0;i<3;i++){
     const p=v[i],q=v[(i+1)%3];toolStroke(p,q,null,'triangle-outline');
     // side colors are consistent with opposite vertex colors
-    const e=layer.lastChild.previousSibling;e.setAttribute('stroke',colors[(i+2)%3]);
+    const e=layer.lastChild;e.setAttribute('stroke',colors[(i+2)%3]);
    }
    for(let i=0;i<3;i++)handle(v[i],'vertex'+i);
    handle(centroid,'move');
@@ -339,6 +459,7 @@ function moveModel(m,kind,delta){if(kind==='triangle')m.v=m.v.map(q=>plus(q,delt
 function releaseDrag(cancel=false){if(!drag)return;const ongoing=drag;if(cancel){const obj=instances.find(x=>x.id===ongoing.instanceId);if(obj)obj.model=ongoing.original;}
  drag=null;showSnap(null);if(!cancel)checkpoint();draw();}
 svg.addEventListener('pointerdown',e=>{
+ if(editMode!=='analyze')return;
  if(e.button!==0&&e.pointerType==='mouse')return;
  const node=e.target.closest('[data-action]');if(!node)return;
  const owner=node.closest('[data-instance]');if(!owner)return;
@@ -406,6 +527,7 @@ svg.addEventListener('pointercancel',e=>{if(drag&&e.pointerId===drag.id)releaseD
 svg.addEventListener('lostpointercapture',e=>{if(drag&&e.pointerId===drag.id)releaseDrag(false)});
 
 for(const btn of document.querySelectorAll('[data-tool]'))btn.addEventListener('click',()=>{
+ if(editMode!=='analyze')setMode('analyze');
  const kind=btn.dataset.tool;
  const prior=[...instances].reverse().find(x=>x.kind===kind);
  if(prior){selectInstance(prior.id);draw()}else addInstance(kind);
@@ -415,8 +537,8 @@ $('#reset').onclick=resetTool;
 $('#toggle').onclick=()=>{if(activeId===null)return;instances=instances.filter(x=>x.id!==activeId);const selected=instances.at(-1);activeId=selected?.id??null;tool=selected?.kind||'vertical';model=selected?.model||defaults.vertical();draw();checkpoint()};
 $('#snapToggle').onclick=()=>{snapEnabled=!snapEnabled;showSnap(null);updateControls();draw()};
 $('#undo').onclick=()=>restoreHistory(-1);$('#redo').onclick=()=>restoreHistory(1);
-$('#newScene').onclick=()=>{customDefinition=null;variation++;setScene();checkpoint()};
-$('#family').onclick=()=>{customDefinition=null;familyIndex=(familyIndex+1)%families.length;variation=0;setScene();checkpoint()};
+$('#newScene').onclick=()=>{customDefinition=null;variation++;selectedPoint=null;pendingPointId=null;setScene();checkpoint()};
+$('#family').onclick=()=>{customDefinition=null;familyIndex=(familyIndex+1)%families.length;variation=0;selectedPoint=null;pendingPointId=null;setScene();checkpoint()};
 $('#exportJson').onclick=()=>downloadFile('geometry-diagram.json',JSON.stringify(scene.def,null,2),'application/json');
 $('#importJson').onclick=()=>$('#jsonFile').click();
 $('#jsonFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=validateDefinition(JSON.parse(await f.text()));customDefinition=d;setScene();checkpoint()}catch(err){alert('Could not import diagram: '+err.message)}e.target.value=''};
@@ -427,7 +549,202 @@ document.addEventListener('keydown',e=>{const focus=document.activeElement?.tagN
  else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();restoreHistory(1)}
  else if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();$('#toggle').click()}
  else if(e.key==='Escape'&&drag){releaseDrag(true)}
+ else if(e.key==='Escape'&&pendingPointId){pendingPointId=null;hoverPreview=null;setScene();updateControls()}
+ else if(e.key==='Escape'&&buildDrag){finishBuildDrag(true)}
 });
 
-setScene();addInstance('vertical');
+customDefinition={name:'My construction',points:{},objects:[]};
+
+/* Student constructions: points are independent objects; connected segments,
+   rays and lines reference point names and recompute on every movement. */
+function refreshModeUI(){
+ const root=$('#workspaceRoot');if(!root)return;
+ root.classList.toggle('build-mode',editMode==='build');root.classList.toggle('analyze-mode',editMode==='analyze');
+ root.dataset.drawTool=drawTool;
+ $('#modeBuild').classList.toggle('active',editMode==='build');$('#modeAnalyze').classList.toggle('active',editMode==='analyze');
+ $('#modeBuild').setAttribute('aria-pressed',String(editMode==='build'));$('#modeAnalyze').setAttribute('aria-pressed',String(editMode==='analyze'));
+ document.querySelectorAll('[data-draw-tool]').forEach(b=>b.classList.toggle('active',editMode==='build'&&b.dataset.drawTool===drawTool));
+ $('#gridToggle').checked=showGrid;$('#labelsToggle').checked=showLabels;
+ $('#snapPointsToggle').checked=snapEnabled;
+ $('#pointProperties').hidden=!(editMode==='build'&&selectedPoint&&scene?.P[selectedPoint]);
+ $('#emptyProperties').hidden=!$('#pointProperties').hidden;
+ const msg=$('#buildStatus');if(msg&&scene){
+  const count=Object.keys(scene.P).length,objects=scene.def.objects.length;
+  msg.textContent=count+' point'+(count===1?'':'s')+' · '+objects+' geometric object'+(objects===1?'':'s')+
+    (pendingPointId?' · First endpoint: '+pendingPointId:'');
+ }
+}
+function setMode(next,record=true){
+ if(next!==editMode){editMode=next;pendingPointId=null;hoverPreview=null;buildDrag=null;}
+ setScene();updateControls();if(record)checkpoint();
+}
+function ensureCustom(){if(!customDefinition)customDefinition=JSON.parse(JSON.stringify(geometricDefinition()));return customDefinition;}
+function freshPointName(){
+ const used=new Set(Object.keys(ensureCustom().points)),letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ for(let i=0;i<500;i++){const n=letters[i%letters.length]+(i>=letters.length?Math.floor(i/letters.length):'');if(!used.has(n))return n;}
+ return null;
+}
+function buildSnap(p,exclude=null){
+ if(!snapEnabled||!scene)return null;
+ const scale=snapScale(),threshold=17;let nearest=null;
+ const candidates=[...scene.ints,...Object.entries(scene.P).filter(pair=>pair[0]!==exclude).map(pair=>pair[1])];
+ for(const q of candidates){const d=dist(q,p)*scale;if(d<threshold&&(!nearest||d<nearest.d))nearest={p:pt(q.x,q.y),d,kind:'Point'};}
+ if(nearest)return nearest;
+ for(const seg of scene.seg){
+  if(exclude&&seg.ids?.includes(exclude))continue; // An endpoint must not stick to its own moving line.
+  const v=minus(seg.b,seg.a),l2=v.x*v.x+v.y*v.y;if(l2<1)continue;
+  const t=clamp(((p.x-seg.a.x)*v.x+(p.y-seg.a.y)*v.y)/l2,0,1);
+  const q=plus(seg.a,mul(v,t)),d=dist(p,q)*scale;
+  if(d<11&&(!nearest||d<nearest.d))nearest={p:q,d,kind:'Line'};
+ }
+ return nearest;
+}
+function choosePoint(p,skipSnap=false){
+ let nearest=null;
+ for(const [name,q] of Object.entries(scene.P)){
+  const d=dist(p,q)*snapScale();
+  if(d<17&&(!nearest||d<nearest.d))nearest={name,d};
+ }
+ if(nearest)return nearest.name;
+ const q=(!skipSnap&&buildSnap(p))?.p||p;
+ const name=freshPointName();if(!name)return null;
+ ensureCustom().points[name]=[q.x,q.y];selectedPoint=name;
+ return name;
+}
+function drawGrid(){
+ const g=$('#gridLayer');if(!g)return;g.replaceChildren();
+ if(!showGrid)return;
+ for(let x=40;x<1000;x+=40)make('line',{x1:x,y1:0,x2:x,y2:620,class:'grid-line'},g);
+ for(let y=20;y<620;y+=40)make('line',{x1:0,y1:y,x2:1000,y2:y,class:'grid-line'},g);
+}
+function renderBuildPreview(){
+ const g=$('#buildPreview');if(!g)return;g.replaceChildren();
+ if(editMode!=='build'||!pendingPointId||!scene?.P[pendingPointId]||!hoverPreview)return;
+ const a=scene.P[pendingPointId],q=hoverPreview;
+ if(dist(a,q)<1)return;
+ const u=unit(minus(q,a));let start=a,end=q;
+ if(drawTool==='line'){start=minus(a,mul(u,1600));end=plus(a,mul(u,1600));}
+ else if(drawTool==='ray'){end=plus(a,mul(u,1600));}
+ const clipped=clipSegment(start,end,45,955,45,575);if(!clipped)return;
+ make('line',{x1:clipped.a.x,y1:clipped.a.y,x2:clipped.b.x,y2:clipped.b.y,class:'build-preview'},g);
+ make('circle',{cx:q.x,cy:q.y,r:5,class:'build-preview-point'},g);
+}
+function updateProperties(){
+ const panel=$('#pointProperties');if(!panel||!scene)return;
+ const p=selectedPoint&&scene.P[selectedPoint];
+ panel.hidden=!(p&&editMode==='build');$('#emptyProperties').hidden=!!p&&editMode==='build';
+ if(p){const input=$('#pointName');if(document.activeElement!==input)input.value=selectedPoint;
+  $('#pointCoords').textContent='x: '+p.x.toFixed(1)+'    y: '+p.y.toFixed(1);
+ }
+ refreshModeUI();
+}
+function finishBuildDrag(cancel=false){
+ if(!buildDrag)return;
+ const d=buildDrag;buildDrag=null;
+ if(cancel){ensureCustom().points[d.name]=d.before;setScene();}
+ else if(d.moved)checkpoint();
+}
+svg.addEventListener('pointerdown',e=>{
+ if(editMode!=='build'||(e.button!==0&&e.pointerType==='mouse'))return;
+ const p=svgPoint(e);if(!p)return;
+ const node=e.target.closest('[data-point]'),hit=node?.dataset.point;
+ if(drawTool==='select'){
+  if(hit&&scene.P[hit]){
+   e.preventDefault();selectedPoint=hit;
+   ensureCustom();
+   buildDrag={id:e.pointerId,name:hit,before:[...customDefinition.points[hit]],moved:false};
+   try{svg.setPointerCapture(e.pointerId)}catch(_){}
+  }else selectedPoint=null;
+  setScene();return;
+ }
+ e.preventDefault();
+ if(drawTool==='point'){
+  selectedPoint=hit||choosePoint(p,e.altKey);
+  setScene();checkpoint();return;
+ }
+ const name=hit||choosePoint(p,e.altKey);
+ if(!name)return;
+ if(!pendingPointId){pendingPointId=name;hoverPreview=p;setScene();updateControls();checkpoint();return;}
+ const first=pendingPointId;pendingPointId=null;hoverPreview=null;
+ if(first!==name && !ensureCustom().objects.some(o=>o.type===drawTool&&o.through[0]===first&&o.through[1]===name)){
+  ensureCustom().objects.push({type:drawTool,through:[first,name]});
+ }
+ selectedPoint=name;setScene();checkpoint();
+});
+svg.addEventListener('pointermove',e=>{
+ if(editMode!=='build')return;
+ const p=svgPoint(e);if(!p)return;
+ if(buildDrag&&buildDrag.id===e.pointerId){
+  const q=(!e.altKey&&buildSnap(p,buildDrag.name))?.p||p;
+  ensureCustom().points[buildDrag.name]=[q.x,q.y];
+  buildDrag.moved=true;showSnap(!e.altKey?buildSnap(p,buildDrag.name):null);
+  setScene();return;
+ }
+ if(pendingPointId){
+  hoverPreview=(!e.altKey&&buildSnap(p))?.p||p;
+  renderBuildPreview();
+ }
+});
+svg.addEventListener('pointerup',e=>{if(buildDrag&&buildDrag.id===e.pointerId){finishBuildDrag(false);showSnap(null);setScene();}});
+svg.addEventListener('pointercancel',e=>{if(buildDrag&&buildDrag.id===e.pointerId){finishBuildDrag(true);showSnap(null);setScene();}});
+for(const b of document.querySelectorAll('[data-draw-tool]'))b.onclick=()=>{
+ drawTool=b.dataset.drawTool;pendingPointId=null;hoverPreview=null;
+ if(editMode!=='build')setMode('build');else{setScene();updateControls();}
+};
+$('#modeBuild').onclick=()=>setMode('build');
+$('#modeAnalyze').onclick=()=>setMode('analyze');
+$('#blankCanvas').onclick=()=>{
+ customDefinition={name:'My construction',points:{},objects:[]};
+ selectedPoint=null;pendingPointId=null;hoverPreview=null;
+ setMode('build');checkpoint();
+};
+$('#loadExample').onclick=()=>{customDefinition=null;variation=0;familyIndex=0;selectedPoint=null;setScene();checkpoint();};
+$('#gridToggle').onchange=e=>{showGrid=e.target.checked;setScene();checkpoint()};
+$('#labelsToggle').onchange=e=>{showLabels=e.target.checked;setScene();checkpoint()};
+$('#pointName').onchange=e=>{
+ if(!selectedPoint||!scene.P[selectedPoint])return;
+ const next=e.target.value.trim().toUpperCase(),before=selectedPoint;
+ if(!/^[A-Z][A-Z0-9_]{0,11}$/.test(next)||next!==before&&Object.prototype.hasOwnProperty.call(scene.P,next)){
+  e.target.value=before;return;
+ }
+ if(next===before)return;
+ const def=ensureCustom(),coords=def.points[before];delete def.points[before];def.points[next]=coords;
+ for(const o of def.objects){o.through=o.through.map(id=>id===before?next:id);if(o.throughPoint===before)o.throughPoint=next;}
+ selectedPoint=next;pendingPointId=null;setScene();checkpoint();
+};
+$('#deletePoint').onclick=()=>{
+ if(!selectedPoint||!scene.P[selectedPoint])return;
+ const def=ensureCustom(),name=selectedPoint;delete def.points[name];
+ def.objects=def.objects.filter(o=>!o.through.includes(name)&&o.throughPoint!==name);
+ selectedPoint=null;pendingPointId=null;setScene();checkpoint();
+};
+$('#clearCanvas').onclick=()=>{
+ if(!window.confirm('Clear the construction? You can still use Undo.'))return;
+ customDefinition={name:'My construction',points:{},objects:[]};selectedPoint=null;pendingPointId=null;
+ setScene();checkpoint();
+};
+$('#saveProject').onclick=()=>{
+ downloadFile('geometry-overlay-project.json',JSON.stringify({
+  app:'geometry-overlay',version:4,diagram:geometricDefinition(),instances,
+  snapEnabled,showGrid,showLabels
+ },null,2),'application/json');
+};
+$('#loadProject').onclick=()=>$('#projectFile').click();
+$('#projectFile').onchange=async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  const data=JSON.parse(await file.text()),def=validateDefinition(data.diagram||data);
+  if(Object.keys(def.points).length>250)throw Error('Too many points');
+  customDefinition=JSON.parse(JSON.stringify(def));
+  const kinds=new Set(['vertical','linear','parallel','triangle']);
+  instances=Array.isArray(data.instances)?data.instances.slice(0,20).filter(o=>kinds.has(o.kind)&&o.model&&Number.isInteger(o.id)): [];
+  nextId=Math.max(1,...instances.map(o=>o.id+1));activeId=instances.at(-1)?.id??null;
+  const selected=instances.find(o=>o.id===activeId);tool=selected?.kind||'vertical';model=selected?.model||defaults.vertical();
+  showGrid=!!data.showGrid;showLabels=data.showLabels!==false;
+  snapEnabled=data.snapEnabled!==false;selectedPoint=null;pendingPointId=null;
+  setMode('build');checkpoint();
+ }catch(err){alert('Could not load project: '+err.message)}
+ e.target.value='';
+};
+setScene();checkpoint();setMode('build',false);
 </script></body></html>
