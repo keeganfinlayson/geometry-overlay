@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Overlay v4.0 · Workbench</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Overlay v4.1 · Workbench</title><style>
 :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#263e4e;background:#f3f6f9;font-synthesis:none}
 *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input{font:inherit}button{cursor:pointer;border:1px solid #d3dfe8;background:#fff;color:#345365;border-radius:9px;padding:8px 11px;font-size:12px;font-weight:650;transition:background .12s,border-color .12s}button:hover{background:#eaf5fa;border-color:#aac9d9}button:focus-visible,summary:focus-visible{outline:3px solid #68a9d3;outline-offset:2px}button:disabled{cursor:default;opacity:.35}.appShell{margin:auto;max-width:1640px;min-height:100vh;padding:12px 14px;display:flex;flex-direction:column;gap:10px}.appHeader{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:baseline;gap:11px}.brand h1{margin:0;font-size:19px;letter-spacing:-.5px;color:#1b3446}.version{font-size:11px;font-weight:600;color:#8a9aa5}.headerActions,.minorActions,.tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.primary{background:#183d55;color:#fff;border-color:#183d55}.primary:hover{background:#245873;color:#fff}.toolStrip{background:#fff;border:1px solid #dde5eb;border-radius:12px;padding:9px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.tools{gap:5px}.tool{display:flex;align-items:center;gap:8px;padding:8px 11px;border-color:transparent;font-size:13px;white-space:nowrap}.tool svg{width:27px;height:22px;flex:none}.tool.active{color:#25628d;background:#e9f3fa;border-color:#b4d5e7;box-shadow:inset 0 0 0 1px #dbeaf2}.tool[data-tool="triangle"].active{color:#5c4a9b}.divider{width:1px;height:29px;background:#e2e9ef;margin:0 5px}.smallLabel{font-size:11px;color:#8193a0;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.stage{background:white;border:1px solid #d6e3eb;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px #36536b09;display:flex;flex-direction:column;flex:1;min-height:460px}.stageHeading{height:43px;padding:0 15px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid #e8edf1}.scene-name{font-size:13px;font-weight:700;color:#2f5066}.hint{font-size:12px;color:#718698;text-align:right}.drawing{position:relative;flex:1;min-height:430px;display:flex;align-items:center;justify-content:center;background:#fff}#board{width:100%;height:min(73vh,calc(100vw * .61));min-height:420px;display:block;touch-action:none;user-select:none;background:#fff}.stageFoot{min-height:43px;border-top:1px solid #e8edf1;padding:10px 15px;display:flex;align-items:center;justify-content:space-between;gap:16px}.selectionInfo{font-size:12px;color:#516b7c}.snapInfo{font-size:12px;color:#16806e;font-weight:650;min-width:140px;text-align:right}.more{margin-left:auto;background:#fff;border:1px solid #dde6ec;border-radius:10px;padding:7px 12px;max-width:100%}.more summary{font-size:12px;color:#698396;font-weight:650;cursor:pointer}.moreButtons{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}footer{text-align:center;color:#8fa1ae;font-size:11px;padding-bottom:2px}
 .diagram{stroke:#4f6575;stroke-width:3.2;fill:none;stroke-linecap:round}.aux{stroke:#9dacb8;stroke-width:2;fill:none;stroke-linecap:round}.scene-point{fill:#111;stroke:#111;stroke-width:1;pointer-events:none}.scene-label{fill:#385568;font:700 22px Georgia,serif;pointer-events:none}
@@ -70,8 +70,38 @@
  .modeButton{padding:7px 10px;font-size:12px}
  .appHeader{flex-wrap:wrap}
  .headerActions{margin-left:auto}
+}
+/* v4.1: make the actual construction field large and unmistakably bounded. */
+.mainWorkspace{grid-template-columns:180px minmax(0,1fr);gap:9px;position:relative;align-items:start}
+.sidePanel{padding:9px;gap:10px}
+.stage{min-width:0;min-height:0}
+.drawing{min-height:0;display:block;overflow:visible;background:#e9f0f5}
+#board{width:100%;height:auto;min-height:0;aspect-ratio:1000/620;background:#e9f0f5}
+.work-area-outline{fill:#fff;stroke:#58788f;stroke-width:3.4;pointer-events:none}
+.work-area-label{font:700 12px ui-sans-serif,system-ui,sans-serif;letter-spacing:.06em;fill:#49687d;pointer-events:none}
+.inspector{display:none;position:absolute;right:8px;top:8px;width:242px;max-height:min(76vh,730px);overflow-y:auto;z-index:5;box-shadow:0 12px 42px #294a6470}
+.mainWorkspace.options-open .inspector{display:flex}
+.mainWorkspace.canvas-focused{grid-template-columns:minmax(0,1fr)}
+.mainWorkspace.canvas-focused .sidePanel{display:none}
+.stageHeading{height:auto;min-height:45px;gap:8px;flex-wrap:wrap}
+.workspaceControls{margin-left:auto;display:flex;align-items:center;gap:5px}
+.workspaceControls button{padding:7px 9px;font-size:11px}
+.stageHeading .hint{flex:1;text-align:center;min-width:175px}
+@media(max-width:1120px){
+ .mainWorkspace{grid-template-columns:166px minmax(0,1fr)}
+ .inspector{grid-column:auto;flex-direction:column}
+ .inspectorSection{border-right:0;border-bottom:1px solid #e5edf2;padding-right:0}
+}
+@media(max-width:720px){
+ .mainWorkspace{display:flex;flex-direction:column;gap:6px}
+ .sidePanel{width:100%}
+ .drawing{overflow-x:auto;overflow-y:hidden}
+ #board{min-width:640px;width:100%;height:auto;min-height:0}
+ .inspector{position:static;width:100%;max-height:none;box-shadow:none}
+ .mainWorkspace.canvas-focused .sidePanel{display:none}
+ .stageHeading .hint{order:3;min-width:100%;text-align:left}
 }</style></head><body><main class="appShell">
-<header class="appHeader"><div class="brand"><h1>Geometry Overlay</h1><span class="version">v4.0 · Workbench</span></div><nav class="modeTabs" aria-label="Workspace mode"><button id="modeBuild" class="modeButton active" aria-pressed="true">✎ Build</button><button id="modeAnalyze" class="modeButton" aria-pressed="false">◎ Analyze</button></nav><div class="headerActions"><button id="undo" title="Undo (Ctrl+Z)">Undo</button><button id="redo" title="Redo (Ctrl+Shift+Z)">Redo</button><button id="snapToggle" class="primary" title="Toggle snapping. Hold Alt while dragging to temporarily ignore snapping.">Snap: on</button></div></header>
+<header class="appHeader"><div class="brand"><h1>Geometry Overlay</h1><span class="version">v4.1 · Workbench</span></div><nav class="modeTabs" aria-label="Workspace mode"><button id="modeBuild" class="modeButton active" aria-pressed="true">✎ Build</button><button id="modeAnalyze" class="modeButton" aria-pressed="false">◎ Analyze</button></nav><div class="headerActions"><button id="undo" title="Undo (Ctrl+Z)">Undo</button><button id="redo" title="Redo (Ctrl+Shift+Z)">Redo</button><button id="snapToggle" class="primary" title="Toggle snapping. Hold Alt while dragging to temporarily ignore snapping.">Snap: on</button></div></header>
 <div class="mainWorkspace" id="workspaceRoot">
 <aside class="sidePanel" aria-label="Geometry tools">
  <section class="panelSection"><h2 class="panelTitle">Build <span class="mutedStatus">(draw your own)</span></h2>
@@ -96,11 +126,11 @@
   <button class="panelAction" id="addTool">+ Another overlay</button><button class="panelAction" id="reset">Reset selected overlay</button><button class="panelAction" id="toggle">Remove overlay</button>
  </section>
 </aside>
-<section class="stage"><div class="stageHeading"><span class="scene-name" id="sceneName">My construction</span><span class="hint" id="hint">Select a drawing tool to begin.</span></div>
+<section class="stage"><div class="stageHeading"><span class="scene-name" id="sceneName">My construction</span><span class="hint" id="hint">Select a drawing tool to begin.</span><div class="workspaceControls"><button id="focusCanvas" type="button" aria-pressed="false" title="Hide the left panel to enlarge the construction canvas">Expand canvas</button><button id="optionsButton" type="button" aria-controls="inspectorPanel" aria-expanded="false">Properties &amp; options</button></div></div>
  <div class="drawing"><svg id="board" viewBox="0 0 1000 620" role="img" aria-label="Editable geometry construction and analysis workbench"><g id="gridLayer"></g><g id="diagram"></g><g id="overlay"></g><g id="stencilLayer"></g><g id="buildPreview"></g><g id="snapLayer"></g></svg></div>
  <div class="stageFoot"><span class="selectionInfo" id="selectionInfo">Build a diagram using points, lines, rays and segments.</span><span class="snapInfo" id="snapInfo" aria-live="polite"></span></div>
 </section>
-<aside class="inspector" aria-label="Construction options">
+<aside class="inspector" id="inspectorPanel" aria-label="Construction options">
  <section class="inspectorSection"><h3>Properties</h3><div id="emptyProperties" class="mutedStatus">Select a point to see its details.</div>
   <div id="pointProperties" hidden><label class="inspectorField">Point label<input id="pointName" maxlength="12" autocomplete="off"></label>
    <div id="pointCoords" class="mutedStatus" style="margin:9px 0"></div><button id="deletePoint" class="panelAction">Delete point</button>
@@ -123,8 +153,11 @@
  <button id="exportJson">Export diagram JSON</button><button id="importJson">Import diagram JSON</button><button id="exportSvg">Export diagram SVG</button>
  <input id="jsonFile" type="file" accept=".json,application/json" hidden>
 </div></details>
-<footer>Geometry Overlay v4.0 · © 2026 Keegan Finlayson</footer></main><script>
+<footer>Geometry Overlay v4.1 · © 2026 Keegan Finlayson</footer></main><script>
 'use strict';
+const BOARD_BOUNDS={xmin:30,xmax:970,ymin:30,ymax:590};
+const insideBoard=p=>p.x>=BOARD_BOUNDS.xmin&&p.x<=BOARD_BOUNDS.xmax&&p.y>=BOARD_BOUNDS.ymin&&p.y<=BOARD_BOUNDS.ymax;
+const constrainBoard=p=>pt(clamp(p.x,BOARD_BOUNDS.xmin,BOARD_BOUNDS.xmax),clamp(p.y,BOARD_BOUNDS.ymin,BOARD_BOUNDS.ymax));
 const NS='http://www.w3.org/2000/svg',svg=document.querySelector('#board'),diagram=document.querySelector('#diagram'),overlayRoot=document.querySelector('#overlay'),layerRoot=document.querySelector('#stencilLayer');let overlay=overlayRoot,layer=layerRoot;const $=s=>document.querySelector(s);const make=(tag,attrs={},parent)=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(parent)parent.append(e);return e};const rad=d=>d*Math.PI/180,deg=r=>r*180/Math.PI,dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));const pt=(x,y)=>({x,y}),plus=(a,b)=>pt(a.x+b.x,a.y+b.y),minus=(a,b)=>pt(a.x-b.x,a.y-b.y),mul=(a,t)=>pt(a.x*t,a.y*t),unit=a=>mul(a,1/(Math.hypot(a.x,a.y)||1)),direction=a=>pt(Math.cos(a),Math.sin(a)),angle=(a,b)=>Math.atan2(b.y-a.y,b.x-a.x);let sceneIndex=0,scene,tool='vertical',drag=null,visible=true;let instances=[],activeId=null,nextId=1;let rootLayer=layerRoot,rootOverlay=overlayRoot;
 // Algebraic-geometric definitions: points and constrained geometric primitives.
 // A line is infinite, a ray is one-sided, and a segment is bounded.
@@ -185,7 +218,7 @@ function setScene(){
   if(o.type==='line'){start=minus(a,mul(u,2000));end=plus(a,mul(u,2000));}
   if(o.type==='ray')end=plus(a,mul(u,2000));
   // visible segment is clipped to the work area; mathematical primitive remains unbounded.
-  const clipped=clipSegment(start,end,45,955,45,575);if(!clipped)continue;
+  const clipped=clipSegment(start,end,BOARD_BOUNDS.xmin,BOARD_BOUNDS.xmax,BOARD_BOUNDS.ymin,BOARD_BOUNDS.ymax);if(!clipped)continue;
   seg.push({a:clipped.a,b:clipped.b,type:o.type,ids:o.through,source:o});drawn.push({a:clipped.a,b:clipped.b,type:o.type});
  }
  const ints=[];
@@ -207,7 +240,7 @@ function setScene(){
  }
  drawGrid();
  const occupied=[];for(const {name,p} of named){
-  if(p.x<35||p.x>965||p.y<35||p.y>585)continue;
+  if(!insideBoard(p))continue;
   const real=Object.prototype.hasOwnProperty.call(P,name);
   make('circle',{cx:p.x,cy:p.y,r:real?6.5:4.2,class:real?'scene-point'+(selectedPoint===name?' selected-construction-point':''):'scene-point intersection-point'},diagram);
   if(showLabels&&(real||editMode==='analyze'))labelAt(name,p,occupied);
@@ -613,9 +646,16 @@ function choosePoint(p,skipSnap=false){
 }
 function drawGrid(){
  const g=$('#gridLayer');if(!g)return;g.replaceChildren();
- if(!showGrid)return;
- for(let x=40;x<1000;x+=40)make('line',{x1:x,y1:0,x2:x,y2:620,class:'grid-line'},g);
- for(let y=20;y<620;y+=40)make('line',{x1:0,y1:y,x2:1000,y2:y,class:'grid-line'},g);
+ const b=BOARD_BOUNDS;
+ make('rect',{x:b.xmin,y:b.ymin,width:b.xmax-b.xmin,height:b.ymax-b.ymin,rx:3,class:'work-area-outline'},g);
+ if(showGrid){
+  for(let x=40;x<b.xmax;x+=40)make('line',{x1:x,y1:b.ymin+2,x2:x,y2:b.ymax-2,class:'grid-line'},g);
+  for(let y=40;y<b.ymax;y+=40)make('line',{x1:b.xmin+2,y1:y,x2:b.xmax-2,y2:y,class:'grid-line'},g);
+ }
+ // Draw the boundary over the grid so it always has a visible, solid edge.
+ make('rect',{x:b.xmin,y:b.ymin,width:b.xmax-b.xmin,height:b.ymax-b.ymin,rx:3,
+  fill:'none',stroke:'#58788f','stroke-width':3.4,'pointer-events':'none'},g);
+ if(editMode==='build')make('text',{x:b.xmin+3,y:b.ymin-10,class:'work-area-label'},g).textContent='DRAW INSIDE THE OUTLINED AREA';
 }
 function renderBuildPreview(){
  const g=$('#buildPreview');if(!g)return;g.replaceChildren();
@@ -625,7 +665,7 @@ function renderBuildPreview(){
  const u=unit(minus(q,a));let start=a,end=q;
  if(drawTool==='line'){start=minus(a,mul(u,1600));end=plus(a,mul(u,1600));}
  else if(drawTool==='ray'){end=plus(a,mul(u,1600));}
- const clipped=clipSegment(start,end,45,955,45,575);if(!clipped)return;
+ const clipped=clipSegment(start,end,BOARD_BOUNDS.xmin,BOARD_BOUNDS.xmax,BOARD_BOUNDS.ymin,BOARD_BOUNDS.ymax);if(!clipped)return;
  make('line',{x1:clipped.a.x,y1:clipped.a.y,x2:clipped.b.x,y2:clipped.b.y,class:'build-preview'},g);
  make('circle',{cx:q.x,cy:q.y,r:5,class:'build-preview-point'},g);
 }
@@ -646,7 +686,7 @@ function finishBuildDrag(cancel=false){
 }
 svg.addEventListener('pointerdown',e=>{
  if(editMode!=='build'||(e.button!==0&&e.pointerType==='mouse'))return;
- const p=svgPoint(e);if(!p)return;
+ const p=svgPoint(e);if(!p||!insideBoard(p))return;
  const node=e.target.closest('[data-point]'),hit=node?.dataset.point;
  if(drawTool==='select'){
   if(hit&&scene.P[hit]){
@@ -675,13 +715,15 @@ svg.addEventListener('pointermove',e=>{
  if(editMode!=='build')return;
  const p=svgPoint(e);if(!p)return;
  if(buildDrag&&buildDrag.id===e.pointerId){
-  const q=(!e.altKey&&buildSnap(p,buildDrag.name))?.p||p;
+  const inside=constrainBoard(p);
+  const q=(!e.altKey&&buildSnap(inside,buildDrag.name))?.p||inside;
   ensureCustom().points[buildDrag.name]=[q.x,q.y];
   buildDrag.moved=true;showSnap(!e.altKey?buildSnap(p,buildDrag.name):null);
   setScene();return;
  }
  if(pendingPointId){
-  hoverPreview=(!e.altKey&&buildSnap(p))?.p||p;
+  const inside=constrainBoard(p);
+  hoverPreview=(!e.altKey&&buildSnap(inside))?.p||inside;
   renderBuildPreview();
  }
 });
@@ -693,6 +735,16 @@ for(const b of document.querySelectorAll('[data-draw-tool]'))b.onclick=()=>{
 };
 $('#modeBuild').onclick=()=>setMode('build');
 $('#modeAnalyze').onclick=()=>setMode('analyze');
+$('#focusCanvas').onclick=()=>{
+ const root=$('#workspaceRoot'),focused=root.classList.toggle('canvas-focused');
+ $('#focusCanvas').textContent=focused?'Show tools':'Expand canvas';
+ $('#focusCanvas').setAttribute('aria-pressed',String(focused));
+};
+$('#optionsButton').onclick=()=>{
+ const root=$('#workspaceRoot'),open=root.classList.toggle('options-open');
+ $('#optionsButton').setAttribute('aria-expanded',String(open));
+ $('#optionsButton').textContent=open?'Hide properties':'Properties & options';
+};
 $('#blankCanvas').onclick=()=>{
  customDefinition={name:'My construction',points:{},objects:[]};
  selectedPoint=null;pendingPointId=null;hoverPreview=null;
