@@ -239,7 +239,7 @@ function selectInstance(id){const obj=instances.find(x=>x.id===id);if(!obj)retur
 function resetTool(){const obj=instances.find(x=>x.id===activeId);if(!obj)return;obj.model=defaults[obj.kind]();model=obj.model;snapVisual=null;draw();checkpoint()}
 function updateControls(){
  const selected=instances.find(x=>x.id===activeId);const kind=selected?.kind||tool;
- document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===kind));
+ document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',editMode==='analyze'&&b.dataset.tool===kind));
  const info=$('#selectionInfo'),hint=$('#hint');if(info)info.textContent=editMode==='build'?'Construct with points, segments, rays, and lines.':selected?`${toolNames[kind]} · ${instances.length} tool${instances.length!==1?'s':''} on diagram`:'Choose an analysis overlay.';
  if(hint)hint.textContent=editMode==='build'?(
   pendingPointId?'Click a second point to finish the '+drawTool+'. Press Esc to cancel.':
@@ -416,7 +416,7 @@ function draw(){
    for(let i=0;i<3;i++){
     const p=v[i],q=v[(i+1)%3];toolStroke(p,q,null,'triangle-outline');
     // side colors are consistent with opposite vertex colors
-    const e=layer.lastChild.previousSibling;e.setAttribute('stroke',colors[(i+2)%3]);
+    const e=layer.lastChild;e.setAttribute('stroke',colors[(i+2)%3]);
    }
    for(let i=0;i<3;i++)handle(v[i],'vertex'+i);
    handle(centroid,'move');
