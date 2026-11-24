@@ -240,7 +240,7 @@ function resetTool(){const obj=instances.find(x=>x.id===activeId);if(!obj)return
 function updateControls(){
  const selected=instances.find(x=>x.id===activeId);const kind=selected?.kind||tool;
  document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===kind));
- const info=$('#selectionInfo'),hint=$('#hint');if(info)info.textContent=selected?`${toolNames[kind]} · ${instances.length} tool${instances.length!==1?'s':''} on diagram`:'No tool selected';
+ const info=$('#selectionInfo'),hint=$('#hint');if(info)info.textContent=editMode==='build'?'Construct with points, segments, rays, and lines.':selected?`${toolNames[kind]} · ${instances.length} tool${instances.length!==1?'s':''} on diagram`:'Choose an analysis overlay.';
  if(hint)hint.textContent=editMode==='build'?(
   pendingPointId?'Click a second point to finish the '+drawTool+'. Press Esc to cancel.':
   drawTool==='select'?'Drag a point to reshape all connected segments and lines.':
@@ -591,6 +591,7 @@ function buildSnap(p,exclude=null){
  for(const q of candidates){const d=dist(q,p)*scale;if(d<threshold&&(!nearest||d<nearest.d))nearest={p:pt(q.x,q.y),d,kind:'Point'};}
  if(nearest)return nearest;
  for(const seg of scene.seg){
+  if(exclude&&seg.ids?.includes(exclude))continue; // An endpoint must not stick to its own moving line.
   const v=minus(seg.b,seg.a),l2=v.x*v.x+v.y*v.y;if(l2<1)continue;
   const t=clamp(((p.x-seg.a.x)*v.x+(p.y-seg.a.y)*v.y)/l2,0,1);
   const q=plus(seg.a,mul(v,t)),d=dist(p,q)*scale;
@@ -708,13 +709,13 @@ $('#pointName').onchange=e=>{
  }
  if(next===before)return;
  const def=ensureCustom(),coords=def.points[before];delete def.points[before];def.points[next]=coords;
- for(const o of def.objects)o.through=o.through.map(id=>id===before?next:id);
+ for(const o of def.objects){o.through=o.through.map(id=>id===before?next:id);if(o.throughPoint===before)o.throughPoint=next;}
  selectedPoint=next;pendingPointId=null;setScene();checkpoint();
 };
 $('#deletePoint').onclick=()=>{
  if(!selectedPoint||!scene.P[selectedPoint])return;
  const def=ensureCustom(),name=selectedPoint;delete def.points[name];
- def.objects=def.objects.filter(o=>!o.through.includes(name));
+ def.objects=def.objects.filter(o=>!o.through.includes(name)&&o.throughPoint!==name);
  selectedPoint=null;pendingPointId=null;setScene();checkpoint();
 };
 $('#clearCanvas').onclick=()=>{
